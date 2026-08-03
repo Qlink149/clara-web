@@ -66,6 +66,14 @@ const caseStudies = [
       "AI calling, WhatsApp guidance, and visitor support flows for event attendance confirmation and navigation.",
     result: "Smarter event coordination with better attendee support.",
   },
+  {
+    title: "Samara Chatbot",
+    tag: "Weekend Project",
+    summary:
+      "WhatsApp Vedic astrology chatbot — collect birth details, compute a real kundli, then deliver warm Hindi/English readings grounded in chart data.",
+    result: "Try it live on WhatsApp — say hi to start your reading.",
+    href: "https://wa.me/919549549339?text=hi",
+  },
 ];
 
 const solutions = [
@@ -192,7 +200,7 @@ export default function App() {
             <StrategyButton className="rounded-full bg-white text-[#0A0618] hover:bg-white/90" />
           </div>
 
-          <button 
+          <button
             className="rounded-full border border-white/10 p-2 text-white/70 md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             data-testid="mobile-menu-button"
@@ -567,14 +575,8 @@ export default function App() {
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-2">
-              {caseStudies.map((study, index) => (
-                <motion.div
-                  key={study.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.45, delay: index * 0.06 }}
-                >
+              {caseStudies.map((study, index) => {
+                const card = (
                   <Card className="group h-full rounded-[2rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))]" data-testid="case-study-card">
                     <CardContent className="p-7">
                       <div className="flex items-center justify-between gap-4">
@@ -592,8 +594,32 @@ export default function App() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
-              ))}
+                );
+
+                return (
+                  <motion.div
+                    key={study.title}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.45, delay: index * 0.06 }}
+                  >
+                    {study.href ? (
+                      <a
+                        href={study.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-violet-300/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070312] rounded-[2rem]"
+                        data-testid="case-study-link"
+                      >
+                        {card}
+                      </a>
+                    ) : (
+                      card
+                    )}
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </section>
