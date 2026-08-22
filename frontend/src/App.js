@@ -32,45 +32,167 @@ const whatsappLink =
 
 const caseStudies = [
   {
-    title: "Hiranandani Parks",
-    tag: "Real Estate",
-    summary:
-      "Multilingual AI calling in English and Tamil for large-scale buyer outreach, qualification, and follow-up journeys.",
-    result: "Qualified leads generated rapidly with scalable follow-up.",
+    title: "KISNA Diamond & Gold Jewellery",
+    subtitle: "AI WhatsApp Concierge",
+    tag: "WhatsApp AI",
+    challenge:
+      "KISNA needed to handle high volumes of customer queries across pre-order, post-order, and support — product availability, pricing, order tracking, returns, and complaint escalation — while keeping a premium brand experience. The support team was stretched thin, with no unified system for tickets, conversation history, or CRM integration.",
+    solution:
+      "We built KIA, an AI WhatsApp concierge for the full customer lifecycle — product discovery and recommendations, order tracking, returns, and complaint resolution. The bot auto-generates tickets, keeps conversation history, tags issues, and escalates to a human when needed, synced live with their CRM and helpdesk.",
+    result:
+      "Customers get instant answers on product info, order status, and support 24/7 on WhatsApp. Automated ticketing and logs give the team full visibility, and human handoff means complex issues are never dropped.",
   },
   {
-    title: "Nilkamal Sleep",
-    tag: "Retail / Distribution",
-    summary:
-      "Dealer-facing dashboards for scheme visibility, incentive intimation, and sales nudges that keep teams informed.",
-    result: "Sharper distributor visibility and better on-ground coordination.",
+    title: "One Reside",
+    subtitle: "AI-Powered Virtual Concierge",
+    tag: "WhatsApp AI",
+    challenge:
+      "An architectural brand wanted a digital extension of their in-store experience — a way for customers to discover furnishing, home accessories, and décor from multiple brands online. Product discovery, comparison, and purchase were split across websites, calls, and store visits.",
+    solution:
+      "We built a WhatsApp virtual concierge that takes customers from discovery and cross-brand comparison through to Razorpay checkout in a single chat. A dashboard lets the client manage brands, products, and services in real time, and the bot remembers context across conversations.",
+    result:
+      "Discovery, comparison, and purchase now happen end-to-end on WhatsApp. The client runs the catalogue from one dashboard, and customers get a personalised concierge that remembers preferences and past interactions.",
+  },
+  {
+    title: "Hiranandani Parks",
+    subtitle: "Festive Campaign — Diwali 2025 · Chennai, Oragadam",
+    tag: "AI Calling",
+    challenge:
+      "Hiranandani needed to reach a pool of around 35,000 homebuyer leads before the festive season, but did not have the manpower for high-volume outreach.",
+    solution:
+      "We deployed a multilingual AI calling agent fluent in English and Tamil — built to understand buyer intent, speak naturally, and continue the conversation on WhatsApp.",
+    result:
+      "In 2 days the agent called over 6,000 homebuyers and generated 195 qualified leads — fully automated, multilingual, and WhatsApp-supported.",
   },
   {
     title: "Vijay Sales",
-    tag: "Customer Operations",
-    summary:
-      "AI courtesy-calling for complaint resolution follow-ups so human teams can stay focused on revenue tasks.",
-    result: "Freed up human bandwidth while maintaining customer communication.",
-  },
-  {
-    title: "Apex Hospitals",
-    tag: "Healthcare",
-    summary:
-      "AI call quality monitoring that scores patient interactions with more consistency and lower supervisor effort.",
-    result: "Reduced manual review load and improved evaluation consistency.",
+    subtitle: "Courtesy-Calling for Complaint Follow-ups",
+    tag: "AI Calling",
+    challenge:
+      "Complaint-resolution follow-ups were consuming call-centre bandwidth, keeping agents away from sales and new-customer acquisition.",
+    solution:
+      "We deployed an AI courtesy-calling agent that automatically checks complaint-resolution status with customers, without pulling human agents into every follow-up.",
+    result:
+      "The agent now handles about 1,867 calls per day, freeing 5+ human agents for revenue-generating work.",
   },
   {
     title: "iDAC",
+    subtitle: "GEO: Dominating AI Search Engines",
+    tag: "GEO",
+    challenge:
+      "iDAC needed to show up for complex, high-intent conversational queries on AI search engines — not traditional keywords alone.",
+    solution:
+      "We built a Generative Engine Optimization strategy so the brand ranks on ChatGPT, Gemini, and Perplexity for queries such as “best architecture exhibitions in Mumbai” and “top architecture awards.”",
+    result:
+      "16% overall organic traffic growth, 38% targeted traffic increase from Mumbai, and 100% of referral traffic growth targets hit.",
+  },
+  {
+    title: "AI Video Analytics Agents",
+    subtitle: "AVAA",
+    tag: "AVAA",
+    challenge:
+      "Ordinary CCTV systems were collecting footage without turning it into usable intelligence for revenue, compliance, or cost control.",
+    solution:
+      "AVAA turns existing cameras into a live intelligence layer — spotting sales opportunities and customer flow, monitoring SOP and safety compliance, and flagging operational waste.",
+    result:
+      "Teams get real-time insight from infrastructure they already have: stronger revenue signals, automatic SOP checks, and lower operating cost.",
+  },
+  {
+    title: "Nilkamal Sleep",
+    subtitle: "Turnkey AI Solutions",
+    tag: "Custom Solutions",
+    challenge:
+      "Leadership lacked a live view of retail performance, and dealer incentive settlement was a 15–20 day manual process. Sales and customer experience needed automation, not another static report.",
+    solution:
+      "We built a retail store performance dashboard for sales, footfall, scheme qualification, and store KPIs; a Virtual AI CEO that ingests business data and delivers executive recommendations; and a Dealer Incentive Engine that computes incentives from three uploaded files.",
+    result:
+      "Settlement moved from 15–20 days to real time. Leadership now sees every store live and gets always-on executive recommendations instead of a stack of reports.",
+  },
+  {
+    title: "Aditya Birla Sun Life",
+    subtitle: "Channel Partner Tracking",
+    tag: "Custom Solutions",
+    challenge:
+      "Dormant channel partners were hard to reactivate because engagement and performance data were not consolidated in real time.",
+    solution:
+      "We built a dashboard and backend that tracks every partner’s last interaction with the company and their manager, alongside dealer incentive earnings.",
+    result:
+      "Managers now have full context for personalised outreach — for example spotting a training gap and unused incentive, then reactivating a partner with tailored support instead of a generic sales call.",
+  },
+  {
+    title: "Rustomjee",
+    subtitle: "Personalized Lead Activation",
+    tag: "Custom Solutions",
+    challenge:
+      "Re-engaging dormant leads needed highly personalised communication, not generic cold calls.",
+    solution:
+      "We created virtual customer profiles that track past interactions and compare them against current projects, then used that intelligence to power personalised AI-driven calls.",
+    result:
+      "Dormant prospects are reactivated with specific context — for example a buyer inactive for 18 months who wanted a 3 BHK near a good international school was called about a new project launching next to a Global High School campus.",
+  },
+  {
+    title: "Zelenkofske Axelrod LLC",
+    subtitle: "Practice Management Dashboard",
+    tag: "Custom Solutions",
+    challenge:
+      "ZA ran audit engagements across 5+ disconnected tools — spreadsheets, email, and shared drives — with no real-time visibility. Monthly WIP reconciliation took 3–5 days, invoices were fully manual, and payment health was judged on gut feel.",
+    solution:
+      "We built a unified AI practice-management dashboard covering engagements, PBC tracking, WIP and billing, time entry, and a client portal — plus a Payment Health Scoring Engine (0–100), ClaraGPT document analysis, and auto-generated invoice PDFs.",
+    result:
+      "WIP reconciliation went from 3–5 days to real time. Invoice generation dropped from 30 minutes to under 30 seconds. Five tools became one platform with role-based access and a self-service client portal with Stripe payments.",
+  },
+  {
+    title: "KISNA Diamond & Gold Jewellery",
+    subtitle: "Sales & Support Dashboard",
+    tag: "Custom Solutions",
+    challenge:
+      "Kisna’s sales and support team managed gold-order fulfilment across 25+ vendors with zero real-time visibility. Status tracking was manual — vendors were called every 7 days — so stores could not tell if an order was delayed, in finishing, or ready to dispatch. That created 21-day backlogs and task mismatches across 2,000+ orders.",
+    solution:
+      "We built a live Sales & Support Dashboard for the full gold-order lifecycle: store order receipt, credit-health checks, vendor assignment, QC, payment confirmation, and dispatch. It includes WhatsApp and email alerts via Kisna’s own number, a vendor portal, a QC Review Bureau with digital checklists, and a 7-day payment reminder engine, with role-based access.",
+    result:
+      "2,124 orders across 28 states and 124 customers are now tracked live. INR 17.3 Cr in order value sits on one dashboard. 25+ vendors are moving onto a unified portal, and five disconnected workflows — assignment, vendor coordination, QC, payment, and dispatch — now run as one system.",
+  },
+  {
+    title: "Apex Hospitals",
+    subtitle: "AI Call Quality Monitoring",
+    tag: "Healthcare",
+    challenge:
+      "Quality checks on patient calls were extremely time-intensive for supervisors, creating bottlenecks in healthcare service delivery.",
+    solution:
+      "We built a custom AI quality-check agent that listens to calls and scores each interaction consistently out of 10.",
+    result:
+      "Evaluations are now consistent and objective, supervisor workload dropped sharply, and patient-care standards improved.",
+  },
+  {
+    title: "IRC-CA",
+    subtitle: "Automated Financial Reconciliation",
+    tag: "Custom Solutions",
+    challenge:
+      "Manual reconciliation between ERP and Tally data was slow and error-prone, with weak visibility into why figures did not match.",
+    solution:
+      "Our AI system reconciles ERP and Tally records using unique identifiers, flags discrepancies instantly, and calculates Net Balance, Permanent Difference, and Value of Receipts. A dashboard shows where differences exist and why.",
+    result:
+      "Reconciliation is faster and more accurate, audit visibility is stronger, and mismatches can be resolved without hunting through spreadsheets.",
+  },
+  {
+    title: "iDAC",
+    subtitle: "Infrastructure Development, Architecture & Construction",
     tag: "Events",
-    summary:
-      "AI calling, WhatsApp guidance, and visitor support flows for event attendance confirmation and navigation.",
-    result: "Smarter event coordination with better attendee support.",
+    challenge:
+      "The event needed attendance confirmed at massive scale, visitors guided to the right booths, and analytics captured throughout — without stretching human teams.",
+    solution:
+      "An AI calling agent confirmed attendance, an AI WhatsApp agent guided every visitor to their destination booth, and real-time analytics ran continuously during the event.",
+    result:
+      "43,000 calls in one day, 100% navigation support, and 24/7 event analytics — with record turnout and a complete post-event dataset for the next edition.",
   },
   {
     title: "Samara Chatbot",
+    subtitle: "WhatsApp Vedic Astrology",
     tag: "Weekend Project",
-    summary:
-      "WhatsApp Vedic astrology chatbot — collect birth details, compute a real kundli, then deliver warm Hindi/English readings grounded in chart data.",
+    challenge:
+      "People want a real Vedic astrology reading without waiting on an astrologer — but most chatbots are generic and disconnected from actual chart data.",
+    solution:
+      "We built a WhatsApp chatbot that collects birth details, computes a real kundli, and delivers warm Hindi/English readings grounded in the chart.",
     result: "Try it live on WhatsApp — say hi to start your reading.",
     href: "https://wa.me/919549549339?text=hi",
   },
@@ -114,11 +236,11 @@ const meshBackground = "https://customer-assets.emergentagent.com/job_clara-plat
 // Logo URL - white logo only
 const whiteLogo = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/afgl66uy_White%20Full%20Logo.png";
 
-function StrategyButton({ className = "", size = "default" }) {
+function StrategyButton({ className = "", size = "default", children = "Book a strategy call" }) {
   return (
     <a href={whatsappLink} target="_blank" rel="noreferrer" data-testid="strategy-button-link">
       <Button size={size} className={className} data-testid="strategy-button">
-        Book a strategy call
+        {children}
       </Button>
     </a>
   );
@@ -375,14 +497,12 @@ export default function App() {
                 "Hiranandani",
                 "Vijay Sales",
                 "Nilkamal",
-                "Jaipur Rugs",
                 "Apex Hospitals",
                 "Wonder Cement",
                 "iDAC",
                 "Hiranandani",
                 "Vijay Sales",
                 "Nilkamal",
-                "Jaipur Rugs",
                 "Apex Hospitals",
                 "Wonder Cement",
                 "iDAC",
@@ -570,56 +690,75 @@ export default function App() {
                 Case studies
               </div>
               <h3 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                A few systems already in the field.
+                Problem, challenge, and solution from systems already in the field.
               </h3>
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-2">
-              {caseStudies.map((study, index) => {
-                const card = (
-                  <Card className="group h-full rounded-[2rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))]" data-testid="case-study-card">
-                    <CardContent className="p-7">
-                      <div className="flex items-center justify-between gap-4">
-                        <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/55">
-                          {study.tag}
-                        </div>
-                        <ArrowRight className="h-5 w-5 text-white/30 transition duration-300 group-hover:translate-x-1 group-hover:text-white/65" />
+              {caseStudies.map((study, index) => (
+                <motion.div
+                  key={`${study.title}-${study.subtitle}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.12 }}
+                  transition={{ duration: 0.45, delay: Math.min(index * 0.04, 0.24) }}
+                  className="h-full"
+                >
+                  <Card
+                    className="group flex h-full flex-col rounded-[2rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))]"
+                    data-testid="case-study-card"
+                  >
+                    <CardContent className="flex h-full flex-col p-7">
+                      <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/55 w-fit">
+                        {study.tag}
                       </div>
                       <div className="mt-6 text-3xl font-medium tracking-[-0.04em]">
                         {study.title}
                       </div>
-                      <p className="mt-4 text-sm leading-7 text-white/60">{study.summary}</p>
-                      <div className="mt-8 border-t border-white/10 pt-5 text-sm text-violet-100/90">
-                        {study.result}
+                      <div className="mt-2 text-sm text-violet-100/80">{study.subtitle}</div>
+
+                      <div className="mt-7 space-y-5">
+                        {[
+                          ["01", "Problem / Challenge", study.challenge],
+                          ["02", "Solution", study.solution],
+                          ["03", "Result", study.result],
+                        ].map(([num, label, text]) => (
+                          <div key={label}>
+                            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/40">
+                              <span className="text-violet-200/80">{num}</span>
+                              {label}
+                            </div>
+                            <p
+                              className={`mt-2 text-sm leading-7 ${
+                                label === "Result" ? "text-violet-100/90" : "text-white/65"
+                              }`}
+                            >
+                              {text}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-auto flex flex-wrap gap-3 pt-8">
+                        <StrategyButton className="rounded-full bg-white text-[#0A0618] hover:bg-white/90">
+                          Book Strategy Call
+                        </StrategyButton>
+                        {study.href ? (
+                          <a href={study.href} target="_blank" rel="noreferrer" data-testid="case-study-link">
+                            <Button
+                              variant="outline"
+                              className="rounded-full border-white/14 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                            >
+                              Try it live
+                              <ArrowRight className="h-4 w-4" />
+                            </Button>
+                          </a>
+                        ) : null}
                       </div>
                     </CardContent>
                   </Card>
-                );
-
-                return (
-                  <motion.div
-                    key={study.title}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.15 }}
-                    transition={{ duration: 0.45, delay: index * 0.06 }}
-                  >
-                    {study.href ? (
-                      <a
-                        href={study.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-violet-300/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070312] rounded-[2rem]"
-                        data-testid="case-study-link"
-                      >
-                        {card}
-                      </a>
-                    ) : (
-                      card
-                    )}
-                  </motion.div>
-                );
-              })}
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </section>
