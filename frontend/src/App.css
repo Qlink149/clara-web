@@ -148,6 +148,12 @@ body {
   border-color: rgba(255, 255, 255, 0.14);
 }
 
+/* Skip layout/paint for off-screen case study cards */
+.case-study-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 520px;
+}
+
 /* Mobile touch scroll optimization */
 @media (max-width: 768px) {
   * {

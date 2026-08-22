@@ -678,13 +678,7 @@ export default function App() {
 
         {/* Case Studies Section */}
         <section id="case-studies" className="mx-auto max-w-7xl px-6 py-20 lg:px-10" data-testid="case-studies-section">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.7 }}
-          >
+          <div>
             <div className="max-w-3xl">
               <div className="text-sm uppercase tracking-[0.26em] text-white/40">
                 Case studies
@@ -695,15 +689,8 @@ export default function App() {
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-2">
-              {caseStudies.map((study, index) => (
-                <motion.div
-                  key={`${study.title}-${study.subtitle}`}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.12 }}
-                  transition={{ duration: 0.45, delay: Math.min(index * 0.04, 0.24) }}
-                  className="h-full"
-                >
+              {caseStudies.map((study) => (
+                <div key={`${study.title}-${study.subtitle}`} className="case-study-card h-full">
                   <Card
                     className="group flex h-full flex-col rounded-[2rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))]"
                     data-testid="case-study-card"
@@ -757,10 +744,10 @@ export default function App() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* Credibility Section */}
