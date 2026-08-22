@@ -238,8 +238,14 @@ const whiteLogo = "https://customer-assets.emergentagent.com/job_clara-platform/
 
 function StrategyButton({ className = "", size = "default", children = "Book a strategy call" }) {
   return (
-    <a href={whatsappLink} target="_blank" rel="noreferrer" data-testid="strategy-button-link">
-      <Button size={size} className={className} data-testid="strategy-button">
+    <a
+      href={whatsappLink}
+      target="_blank"
+      rel="noreferrer"
+      className={`inline-flex min-w-0 max-w-full ${className.includes("w-full") ? "w-full" : ""}`}
+      data-testid="strategy-button-link"
+    >
+      <Button size={size} className={`max-w-full ${className}`} data-testid="strategy-button">
         {children}
       </Button>
     </a>
@@ -250,7 +256,7 @@ function StrategyButton({ className = "", size = "default", children = "Book a s
 function ClaraLogo() {
   return (
     <div className="relative flex items-center" data-testid="clara-logo">
-      <img src={whiteLogo} alt="Clara.ai" className="h-7 md:h-8" />
+      <img src={whiteLogo} alt="Clara.ai" className="h-7 w-auto max-w-[140px] object-contain md:h-8" />
     </div>
   );
 }
@@ -271,7 +277,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#070312] text-white selection:bg-violet-300/30" data-testid="clara-website">
+    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#070312] text-white selection:bg-violet-300/30" data-testid="clara-website">
       {/* Background Effects - Single mesh gradient */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <motion.div
@@ -300,7 +306,7 @@ export default function App() {
 
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-white/8 bg-[#070312]/70 backdrop-blur-xl" data-testid="header">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-10">
           <ClaraLogo />
 
           <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex" data-testid="desktop-nav">
@@ -334,7 +340,7 @@ export default function App() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-white/8 bg-[#070312]/95 backdrop-blur-xl" data-testid="mobile-menu">
-            <nav className="flex flex-col gap-4 px-6 py-4">
+            <nav className="flex flex-col gap-4 px-4 py-4 sm:px-6">
               <a href="#about" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Why Clara
               </a>
@@ -355,21 +361,21 @@ export default function App() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-10 lg:pb-28 lg:pt-24" data-testid="hero-section">
+        <section className="relative mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-16 lg:px-10 lg:pb-28 lg:pt-24" data-testid="hero-section">
           <div className="grid items-end gap-14 lg:grid-cols-[1.15fr_0.85fr]">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={fadeUp}
               transition={{ duration: 0.7 }}
-              className="max-w-3xl"
+              className="min-w-0 max-w-3xl"
             >
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/65">
-                <Sparkles className="h-3.5 w-3.5" />
+              <div className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-white/65 sm:px-4 sm:text-xs sm:tracking-[0.22em]">
+                <Sparkles className="h-3.5 w-3.5 shrink-0" />
                 Trusted by enterprise teams across industries
               </div>
 
-              <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl" data-testid="hero-title">
+              <h1 className="max-w-4xl text-[2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-white sm:text-6xl sm:leading-[0.95] lg:text-7xl" data-testid="hero-title">
                 AI implementation for businesses that need
                 <span className="bg-[linear-gradient(135deg,#FFFFFF,#CDB8FF_60%,#8C63FF)] bg-clip-text text-transparent">
                   {" "}
@@ -377,16 +383,16 @@ export default function App() {
                 </span>
               </h1>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-10 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <StrategyButton
                   size="lg"
-                  className="rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/92"
+                  className="w-full rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/92 sm:w-auto"
                 />
-                <a href="#case-studies">
+                <a href="#case-studies" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white"
+                    className="w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                     data-testid="view-case-studies-button"
                   >
                     View case studies
@@ -418,35 +424,35 @@ export default function App() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="relative"
+              className="relative min-w-0"
               data-testid="hero-card"
             >
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-[linear-gradient(180deg,rgba(130,88,255,0.14),rgba(255,255,255,0.02))] blur-2xl" />
-              <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-5 shadow-2xl shadow-black/30 backdrop-blur-xl">
-                <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-[#120B27]/70 px-4 py-3">
-                  <div>
+              <div className="absolute -inset-4 hidden rounded-[2.5rem] bg-[linear-gradient(180deg,rgba(130,88,255,0.14),rgba(255,255,255,0.02))] blur-2xl sm:block" />
+              <div className="relative min-w-0 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-4 shadow-2xl shadow-black/30 backdrop-blur-xl sm:rounded-[2rem] sm:p-5">
+                <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#120B27]/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
                     <div className="text-sm text-white/45">Clara.ai</div>
-                    <div className="text-lg font-medium text-white">
+                    <div className="text-base font-medium text-white sm:text-lg">
                       Your AI partner for businesses
                     </div>
                   </div>
-                  <div className="rounded-full border border-violet-300/20 bg-violet-300/10 px-3 py-1 text-xs text-violet-100">
+                  <div className="w-fit shrink-0 rounded-full border border-violet-300/20 bg-violet-300/10 px-3 py-1 text-xs text-violet-100">
                     Live systems
                   </div>
                 </div>
 
                 <div className="mt-4 grid gap-4">
-                  <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-xs uppercase tracking-[0.22em] text-white/35">
+                  <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4 sm:p-5">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="min-w-0">
+                        <div className="text-xs uppercase tracking-[0.16em] text-white/35 sm:tracking-[0.22em]">
                           How we work
                         </div>
-                        <div className="mt-2 text-xl font-medium text-white">
+                        <div className="mt-2 text-lg font-medium text-white sm:text-xl">
                           Map. Build. Deploy.
                         </div>
                       </div>
-                      <div className="rounded-2xl bg-[linear-gradient(135deg,rgba(132,87,255,0.35),rgba(255,255,255,0.08))] px-3 py-2 text-sm text-white/80">
+                      <div className="w-fit shrink-0 rounded-2xl bg-[linear-gradient(135deg,rgba(132,87,255,0.35),rgba(255,255,255,0.08))] px-3 py-2 text-sm text-white/80">
                         Fractional AI team
                       </div>
                     </div>
@@ -458,10 +464,10 @@ export default function App() {
                       ].map((item) => (
                         <div
                           key={item}
-                          className="flex items-center gap-3 rounded-2xl border border-white/7 bg-white/[0.02] px-4 py-3 text-sm text-white/70"
+                          className="flex items-start gap-3 rounded-2xl border border-white/7 bg-white/[0.02] px-4 py-3 text-sm text-white/70"
                         >
-                          <div className="h-2 w-2 rounded-full bg-violet-300" />
-                          {item}
+                          <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-violet-300" />
+                          <span className="min-w-0">{item}</span>
                         </div>
                       ))}
                     </div>
@@ -487,11 +493,11 @@ export default function App() {
           </div>
 
           {/* Logo Marquee */}
-          <div className="mt-14 overflow-hidden rounded-full border border-white/10 bg-white/[0.03] py-4" data-testid="logo-marquee">
+          <div className="mt-10 overflow-hidden rounded-full border border-white/10 bg-white/[0.03] py-3 sm:mt-14 sm:py-4" data-testid="logo-marquee">
             <motion.div
               animate={{ x: [0, -600] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="flex min-w-max items-center gap-10 px-6 text-sm uppercase tracking-[0.28em] text-white/45"
+              className="flex min-w-max items-center gap-10 px-6 text-xs uppercase tracking-[0.2em] text-white/45 sm:text-sm sm:tracking-[0.28em]"
             >
               {[
                 "Hiranandani",
@@ -514,11 +520,11 @@ export default function App() {
         </section>
 
         {/* Why Clara Section */}
-        <section id="about" className="mx-auto max-w-7xl px-6 py-20 lg:px-10" data-testid="about-section">
+        <section id="about" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="about-section">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.15 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
             className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"
@@ -527,7 +533,7 @@ export default function App() {
               <div className="text-sm uppercase tracking-[0.26em] text-white/40">
                 Why Clara.ai
               </div>
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
+              <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 We solve business problems first. AI comes after.
               </h2>
             </div>
@@ -567,11 +573,11 @@ export default function App() {
 
         {/* Process Section */}
         <section className="bg-[#EDE3FF] text-[#0F0822]" data-testid="process-section">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.25 }}
+              viewport={{ once: true, amount: 0.15 }}
               variants={fadeUp}
               transition={{ duration: 0.7 }}
               className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
@@ -580,7 +586,7 @@ export default function App() {
                 <div className="text-sm uppercase tracking-[0.26em] text-[#4F3D7A]/60">
                   Our process
                 </div>
-                <h3 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
                   A practical path from problem statement to deployed system.
                 </h3>
               </div>
@@ -604,14 +610,14 @@ export default function App() {
                 ].map(([num, title, text]) => (
                   <div
                     key={num}
-                    className="rounded-[1.75rem] border border-[#B9A2EA]/35 bg-white/60 p-6 backdrop-blur-sm"
+                    className="rounded-[1.5rem] border border-[#B9A2EA]/35 bg-white/60 p-5 backdrop-blur-sm sm:rounded-[1.75rem] sm:p-6"
                     data-testid="process-step"
                   >
-                    <div className="flex items-start gap-5">
+                    <div className="flex items-start gap-3 sm:gap-5">
                       <div className="rounded-2xl bg-[#120B27] px-3 py-2 text-sm font-medium text-white">
                         {num}
                       </div>
-                      <div>
+                      <div className="min-w-0">
                         <div className="text-xl font-medium">{title}</div>
                         <p className="mt-2 max-w-2xl text-base leading-7 text-[#3A2C57]/75">
                           {text}
@@ -626,11 +632,11 @@ export default function App() {
         </section>
 
         {/* Solutions Section */}
-        <section id="solutions" className="mx-auto max-w-7xl px-6 py-20 lg:px-10" data-testid="solutions-section">
+        <section id="solutions" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="solutions-section">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             variants={fadeUp}
             transition={{ duration: 0.7 }}
           >
@@ -639,7 +645,7 @@ export default function App() {
                 <div className="text-sm uppercase tracking-[0.26em] text-white/40">
                   Solutions
                 </div>
-                <h3 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
                   Built around the system you actually run.
                 </h3>
               </div>
@@ -656,7 +662,7 @@ export default function App() {
                 return (
                   <motion.div key={item.title} whileHover={{ y: -4 }} transition={{ duration: 0.22 }}>
                     <Card className="h-full rounded-[1.9rem] border-white/10 bg-white/[0.035] text-white shadow-none" data-testid="solution-card">
-                      <CardContent className="p-7">
+                      <CardContent className="p-5 sm:p-7">
                         <div className="flex items-center justify-between">
                           <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
                             <Icon className="h-5 w-5 text-violet-200" />
@@ -677,29 +683,29 @@ export default function App() {
         </section>
 
         {/* Case Studies Section */}
-        <section id="case-studies" className="mx-auto max-w-7xl px-6 py-20 lg:px-10" data-testid="case-studies-section">
+        <section id="case-studies" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="case-studies-section">
           <div>
             <div className="max-w-3xl">
               <div className="text-sm uppercase tracking-[0.26em] text-white/40">
                 Case studies
               </div>
-              <h3 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
                 Problem, challenge, and solution from systems already in the field.
               </h3>
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-2">
               {caseStudies.map((study) => (
-                <div key={`${study.title}-${study.subtitle}`} className="case-study-card h-full">
+                <div key={`${study.title}-${study.subtitle}`} className="case-study-card min-w-0 h-full">
                   <Card
-                    className="group flex h-full flex-col rounded-[2rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))]"
+                    className="group flex h-full min-w-0 flex-col rounded-[1.5rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))] sm:rounded-[2rem]"
                     data-testid="case-study-card"
                   >
-                    <CardContent className="flex h-full flex-col p-7">
-                      <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/55 w-fit">
+                    <CardContent className="flex h-full min-w-0 flex-col p-5 sm:p-7">
+                      <div className="w-fit max-w-full rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.2em]">
                         {study.tag}
                       </div>
-                      <div className="mt-6 text-3xl font-medium tracking-[-0.04em]">
+                      <div className="mt-6 text-2xl font-medium tracking-[-0.03em] sm:text-3xl">
                         {study.title}
                       </div>
                       <div className="mt-2 text-sm text-violet-100/80">{study.subtitle}</div>
@@ -710,8 +716,8 @@ export default function App() {
                           ["02", "Solution", study.solution],
                           ["03", "Result", study.result],
                         ].map(([num, label, text]) => (
-                          <div key={label}>
-                            <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/40">
+                          <div key={label} className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-white/40 sm:text-xs sm:tracking-[0.2em]">
                               <span className="text-violet-200/80">{num}</span>
                               {label}
                             </div>
@@ -726,15 +732,15 @@ export default function App() {
                         ))}
                       </div>
 
-                      <div className="mt-auto flex flex-wrap gap-3 pt-8">
-                        <StrategyButton className="rounded-full bg-white text-[#0A0618] hover:bg-white/90">
+                      <div className="mt-auto flex w-full flex-col gap-3 pt-8 sm:flex-row sm:flex-wrap">
+                        <StrategyButton className="w-full rounded-full bg-white text-[#0A0618] hover:bg-white/90 sm:w-auto">
                           Book Strategy Call
                         </StrategyButton>
                         {study.href ? (
-                          <a href={study.href} target="_blank" rel="noreferrer" data-testid="case-study-link">
+                          <a href={study.href} target="_blank" rel="noreferrer" className="w-full sm:w-auto" data-testid="case-study-link">
                             <Button
                               variant="outline"
-                              className="rounded-full border-white/14 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                              className="w-full rounded-full border-white/14 bg-white/5 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                             >
                               Try it live
                               <ArrowRight className="h-4 w-4" />
@@ -751,13 +757,13 @@ export default function App() {
         </section>
 
         {/* Credibility Section */}
-        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10" data-testid="credibility-section">
-          <div className="grid gap-8 rounded-[2.25rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-8 md:grid-cols-[1fr_auto_1fr] md:items-center lg:p-10">
+        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="credibility-section">
+          <div className="grid gap-8 rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 sm:rounded-[2.25rem] sm:p-8 md:grid-cols-[1fr_auto_1fr] md:items-center lg:p-10">
             <div>
               <div className="text-sm uppercase tracking-[0.26em] text-white/40">
                 Credibility
               </div>
-              <div className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-white">
+              <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl">
                 Backed under the Rajasthan Startup Policy and recognised by government institutions.
               </div>
             </div>
@@ -774,13 +780,13 @@ export default function App() {
 
         {/* Industries Section */}
         <section className="bg-[#EDE3FF] text-[#0F0822]" data-testid="industries-section">
-          <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
             <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
               <div>
                 <div className="text-sm uppercase tracking-[0.26em] text-[#4F3D7A]/60">
                   Industries
                 </div>
-                <h3 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
                   Designed to fit complex businesses across sectors.
                 </h3>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-[#3A2C57]/75">
@@ -796,11 +802,11 @@ export default function App() {
                   return (
                     <div
                       key={item.name}
-                      className="rounded-[1.6rem] border border-[#B9A2EA]/35 bg-white/60 p-5"
+                      className="rounded-[1.25rem] border border-[#B9A2EA]/35 bg-white/60 p-4 sm:rounded-[1.6rem] sm:p-5"
                       data-testid="industry-card"
                     >
                       <Icon className="h-5 w-5 text-[#5A35C8]" />
-                      <div className="mt-4 text-lg font-medium">{item.name}</div>
+                      <div className="mt-4 text-sm font-medium sm:text-lg">{item.name}</div>
                     </div>
                   );
                 })}
@@ -810,38 +816,38 @@ export default function App() {
         </section>
 
         {/* Quote Section */}
-        <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10" data-testid="quote-section">
-          <div className="rounded-[2.5rem] border border-white/10 bg-[linear-gradient(135deg,rgba(117,72,255,0.14),rgba(255,255,255,0.03))] p-8 text-center lg:p-14">
-            <div className="mx-auto max-w-4xl text-4xl font-semibold leading-tight tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
+        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-10" data-testid="quote-section">
+          <div className="rounded-[1.75rem] border border-white/10 bg-[linear-gradient(135deg,rgba(117,72,255,0.14),rgba(255,255,255,0.03))] p-6 text-center sm:rounded-[2.5rem] sm:p-8 lg:p-14">
+            <div className="mx-auto max-w-4xl text-[1.75rem] font-semibold leading-snug tracking-[-0.03em] text-white sm:text-5xl sm:leading-tight sm:tracking-[-0.05em] lg:text-6xl">
               Your best employees are humans. Let's stop making them work like robots.
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="mx-auto max-w-7xl px-6 pb-24 lg:px-10" data-testid="contact-section">
-          <div className="grid gap-8 rounded-[2.25rem] border border-white/10 bg-white/[0.035] p-8 lg:grid-cols-[1fr_0.9fr] lg:p-10">
+        <section id="contact" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-10" data-testid="contact-section">
+          <div className="grid gap-8 rounded-[1.75rem] border border-white/10 bg-white/[0.035] p-5 sm:rounded-[2.25rem] sm:p-8 lg:grid-cols-[1fr_0.9fr] lg:p-10">
             <div>
               <div className="text-sm uppercase tracking-[0.26em] text-white/40">
                 Contact
               </div>
-              <h3 className="mt-5 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
                 Bring us the problem statement. We'll bring the solution.
               </h3>
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/60">
                 Whether you need a single automation, a new dashboard, or a full AI
                 rollout across teams, Clara.ai can step in as your implementation partner.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <StrategyButton
                   size="lg"
-                  className="rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/92"
+                  className="w-full rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/92 sm:w-auto"
                 />
-                <a href="#solutions">
+                <a href="#solutions" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white"
+                    className="w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                     data-testid="see-solutions-button"
                   >
                     See solutions
@@ -878,10 +884,10 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 px-6 py-8 lg:px-10" data-testid="footer">
+      <footer className="border-t border-white/8 px-4 py-8 sm:px-6 lg:px-10" data-testid="footer">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
-            <img src={whiteLogo} alt="Clara.ai" className="h-6" />
+            <img src={whiteLogo} alt="Clara.ai" className="h-6 w-auto max-w-[120px] object-contain" />
           </div>
           <div className="flex items-center gap-6">
             <span>AI implementation partner for businesses</span>
