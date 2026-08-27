@@ -277,7 +277,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#070312] text-white selection:bg-violet-300/30" data-testid="clara-website">
+    <div className="min-h-screen w-full min-w-0 bg-[#070312] text-white selection:bg-violet-300/30" data-testid="clara-website">
       {/* Background Effects - Single mesh gradient */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <motion.div
