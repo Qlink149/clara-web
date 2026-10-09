@@ -319,6 +319,9 @@ export default function App() {
             <a href="#case-studies" className="transition hover:text-white">
               Case Studies
             </a>
+            <a href="/blog/" className="transition hover:text-white">
+              Blog
+            </a>
             <a href="#contact" className="transition hover:text-white">
               Contact
             </a>
@@ -349,6 +352,9 @@ export default function App() {
               </a>
               <a href="#case-studies" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Case Studies
+              </a>
+              <a href="/blog/" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
+                Blog
               </a>
               <a href="#contact" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Contact
