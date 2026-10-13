@@ -1,0 +1,30 @@
+# Clara AI
+
+> Clara AI is an AI agency operated by SNB Future Drive Pvt Ltd, India. It builds, deploys and manages custom AI systems for businesses: AI chatbots for websites and WhatsApp, AI calling agents, operations and BI dashboards, and custom AI agents. Clara AI serves clients in India, the Gulf, the USA and Canada, and Europe.
+
+## What Clara AI builds
+
+- AI chatbots for web and WhatsApp that answer from a company's own documents, qualify leads and hand over to people
+- AI calling agents that follow up with leads and customers by phone
+- Operations intelligence and BI dashboards that bring data from many systems into one live view
+- Custom AI agents for specific business workflows
+
+## How Clara AI works
+
+Clara AI starts by diagnosing the current workflow, then builds on the client's real data. A version 1 demo is ready within 7 days of receiving the client's material. The system runs beside the client's team, with clear human handover rules, and Clara AI keeps managing and improving it.
+
+## Clients
+
+Clients include Hiranandani, Rustomjee, K Raheja, Nilkamal, KISNA, Vijay Sales, Apex Hospitals, The Hindu, Tempsens, Ergode and Zelenkofske Axelrod.
+
+## Links
+
+- [Homepage](https://www.claraai.tech/)
+- [Blog](https://www.claraai.tech/blog/)
+- [Operations Intelligence Dashboard for Multi-Branch Retail](https://www.claraai.tech/blog/operations-intelligence-dashboard-multi-branch-retail/)
+- [AI Web Chatbot for Industrial Product Catalogue Support](https://www.claraai.tech/blog/ai-web-chatbot-industrial-product-catalogue-support/)
+- [AI Chatbot for Jewellery Retail Lead Qualification](https://www.claraai.tech/blog/ai-chatbot-for-jewellery-retail-lead-qualification/)
+
+## Contact
+
+yogansh@claraai.tech

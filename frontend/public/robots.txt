@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://claraai.tech/blog/sitemap.xml
+Sitemap: https://www.claraai.tech/sitemap.xml
