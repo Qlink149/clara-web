@@ -27,7 +27,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const whatsappLink =
+export const whatsappLink =
   "https://wa.me/918696979791?text=Hello%2C%0AI%20am%20ready%20to%20implement%20AI%20in%20my%20business!";
 
 const caseStudies = [
@@ -231,12 +231,12 @@ const industries = [
 ];
 
 // Single background mesh image
-const meshBackground = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/bdu3d8vr_mesh-199.png";
+export const meshBackground = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/bdu3d8vr_mesh-199.png";
 
 // Logo URL - white logo only
-const whiteLogo = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/afgl66uy_White%20Full%20Logo.png";
+export const whiteLogo = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/afgl66uy_White%20Full%20Logo.png";
 
-function StrategyButton({ className = "", size = "default", children = "Book a strategy call" }) {
+export function StrategyButton({ className = "", size = "default", children = "Book a strategy call" }) {
   return (
     <a
       href={whatsappLink}
@@ -253,7 +253,7 @@ function StrategyButton({ className = "", size = "default", children = "Book a s
 }
 
 // Clara Logo Component - White logo only
-function ClaraLogo() {
+export function ClaraLogo() {
   return (
     <div className="relative flex items-center" data-testid="clara-logo">
       <img src={whiteLogo} alt="Clara.ai" className="h-7 w-auto max-w-[140px] object-contain md:h-8" />
@@ -895,6 +895,13 @@ export default function App() {
           <div className="flex items-center gap-3">
             <img src={whiteLogo} alt="Clara.ai" className="h-6 w-auto max-w-[120px] object-contain" />
           </div>
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Services" data-testid="footer-services">
+            <a href="/ai-chatbots" className="transition hover:text-white">AI Chatbots</a>
+            <a href="/ai-calling-agents" className="transition hover:text-white">AI Calling Agents</a>
+            <a href="/ai-dashboards" className="transition hover:text-white">AI Dashboards</a>
+            <a href="/custom-ai-agents" className="transition hover:text-white">Custom AI Agents</a>
+            <a href="/blog/" className="transition hover:text-white">Blog</a>
+          </nav>
           <div className="flex items-center gap-6">
             <span>AI implementation partner for businesses</span>
             <span className="hidden md:inline">•</span>

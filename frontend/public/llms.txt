@@ -22,6 +22,10 @@ Clients include Hiranandani, Rustomjee, K Raheja, Nilkamal, KISNA, Vijay Sales, 
 ## Links
 
 - [Homepage](https://www.claraai.tech/)
+- [AI Chatbots](https://www.claraai.tech/ai-chatbots)
+- [AI Calling Agents](https://www.claraai.tech/ai-calling-agents)
+- [AI Dashboards](https://www.claraai.tech/ai-dashboards)
+- [Custom AI Agents](https://www.claraai.tech/custom-ai-agents)
 - [Blog](https://www.claraai.tech/blog/)
 - [AI Chatbot for Hospital Appointment Booking in the Gulf](https://www.claraai.tech/blog/ai-chatbot-for-hospital-appointment-booking/)
 - [AI Calling Agent for Real Estate Lead Follow-Up](https://www.claraai.tech/blog/ai-calling-agent-for-real-estate-lead-follow-up/)

@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/blog", "destination": "https://clarablog.vercel.app/blog/" },
     { "source": "/blog/(.*)", "destination": "https://clarablog.vercel.app/blog/$1" }

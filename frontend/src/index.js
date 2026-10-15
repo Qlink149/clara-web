@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.css";
-import App from "@/App";
+import Root from "@/Root";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+const container = document.getElementById("root");
+const tree = (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Root pathname={window.location.pathname} />
+  </React.StrictMode>
 );
+
+// Pages are prerendered at build time (scripts/prerender.mjs); hydrate when HTML is present.
+if (container.hasChildNodes()) {
+  ReactDOM.hydrateRoot(container, tree);
+} else {
+  ReactDOM.createRoot(container).render(tree);
+}
