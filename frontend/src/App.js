@@ -207,9 +207,9 @@ const solutions = [
   },
   {
     icon: MessageSquare,
-    title: "WhatsApp AI Agents",
+    title: "AI Chatbots (Web & WhatsApp)",
     href: "/ai-chatbots",
-    text: "Structured conversational workflows for support, bookings, lead management, and internal operations.",
+    text: "Chatbots for your website and WhatsApp that answer from your own knowledge, handle support and bookings, and qualify leads.",
   },
   {
     icon: LayoutDashboard,
@@ -219,9 +219,9 @@ const solutions = [
   },
   {
     icon: Workflow,
-    title: "Workflow Automation",
+    title: "Custom AI Agents & Automation",
     href: "/custom-ai-agents",
-    text: "From lead journeys to internal approvals, we remove repetitive work across departments.",
+    text: "Custom AI agents and automations for your own workflows, from lead journeys to internal approvals.",
   },
 ];
 
