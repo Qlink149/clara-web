@@ -9,18 +9,22 @@
 - Operations intelligence and BI dashboards that bring data from many systems into one live view
 - Custom AI agents for specific business workflows
 
+Chatbots and calling agents work in English and Hindi, and in Arabic for clients in the Gulf.
+
 ## How Clara AI works
 
 Clara AI starts by diagnosing the current workflow, then builds on the client's real data. A version 1 demo is ready within 7 days of receiving the client's material. The system runs beside the client's team, with clear human handover rules, and Clara AI keeps managing and improving it.
 
 ## Clients
 
-Clients include Hiranandani, Rustomjee, K Raheja, Nilkamal, KISNA, Vijay Sales, Apex Hospitals, The Hindu, Tempsens, Ergode and Zelenkofske Axelrod.
+Clients include Hiranandani, Rustomjee, K Raheja, Nilkamal, KISNA, Vijay Sales, Apex Hospitals, The Hindu, Tempsens and Ergode.
 
 ## Links
 
 - [Homepage](https://www.claraai.tech/)
 - [Blog](https://www.claraai.tech/blog/)
+- [AI Chatbot for Hospital Appointment Booking in the Gulf](https://www.claraai.tech/blog/ai-chatbot-for-hospital-appointment-booking/)
+- [AI Calling Agent for Real Estate Lead Follow-Up](https://www.claraai.tech/blog/ai-calling-agent-for-real-estate-lead-follow-up/)
 - [Operations Intelligence Dashboard for Multi-Branch Retail](https://www.claraai.tech/blog/operations-intelligence-dashboard-multi-branch-retail/)
 - [AI Web Chatbot for Industrial Product Catalogue Support](https://www.claraai.tech/blog/ai-web-chatbot-industrial-product-catalogue-support/)
 - [AI Chatbot for Jewellery Retail Lead Qualification](https://www.claraai.tech/blog/ai-chatbot-for-jewellery-retail-lead-qualification/)
