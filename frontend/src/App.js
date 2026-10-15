@@ -202,21 +202,25 @@ const solutions = [
   {
     icon: PhoneCall,
     title: "AI Calling Agents",
+    href: "/ai-calling-agents",
     text: "Outbound, inbound, reminder, qualification, and support flows built around real business logic.",
   },
   {
     icon: MessageSquare,
     title: "WhatsApp AI Agents",
+    href: "/ai-chatbots",
     text: "Structured conversational workflows for support, bookings, lead management, and internal operations.",
   },
   {
     icon: LayoutDashboard,
     title: "Dashboards & Visibility",
+    href: "/ai-dashboards",
     text: "Operational dashboards that turn scattered workflows into visible, measurable systems.",
   },
   {
     icon: Workflow,
     title: "Workflow Automation",
+    href: "/custom-ai-agents",
     text: "From lead journeys to internal approvals, we remove repetitive work across departments.",
   },
 ];
@@ -666,22 +670,25 @@ export default function App() {
               {solutions.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <motion.div key={item.title} whileHover={{ y: -4 }} transition={{ duration: 0.22 }}>
+                  <motion.a key={item.title} href={item.href} aria-label={`${item.title}: learn more`} whileHover={{ y: -4 }} transition={{ duration: 0.22 }} className="group block h-full rounded-[1.9rem]" data-testid="solution-card-link">
                     <Card className="h-full rounded-[1.9rem] border-white/10 bg-white/[0.035] text-white shadow-none" data-testid="solution-card">
                       <CardContent className="p-5 sm:p-7">
                         <div className="flex items-center justify-between">
                           <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
                             <Icon className="h-5 w-5 text-violet-200" />
                           </div>
-                          <ChevronRight className="h-5 w-5 text-white/35" />
+                          <ChevronRight className="h-5 w-5 text-white/35 transition group-hover:text-white/70" />
                         </div>
                         <div className="mt-6 text-2xl font-medium tracking-[-0.03em]">
                           {item.title}
                         </div>
                         <p className="mt-3 text-sm leading-7 text-white/60">{item.text}</p>
+                        <div className="mt-5 inline-flex items-center gap-1 text-sm text-violet-200/80 transition group-hover:text-violet-100">
+                          Learn more <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+                        </div>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </motion.a>
                 );
               })}
             </div>
