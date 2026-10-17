@@ -23,7 +23,7 @@ export default function ServicePage({ page }) {
             <a href="/blog/" className="transition hover:text-white">Blog</a>
             <a href="/#contact" className="transition hover:text-white">Contact</a>
           </nav>
-          <StrategyButton size="sm" className="rounded-full">Book a strategy call</StrategyButton>
+          <StrategyButton size="sm" className="rounded-full">Book a free demo</StrategyButton>
         </div>
       </header>
 
@@ -37,9 +37,10 @@ export default function ServicePage({ page }) {
           <p className="mt-6 max-w-3xl text-lg leading-8 text-white/60">{page.intro}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <StrategyButton size="lg" className="rounded-full">
-              Get your first demo in 7 days <ArrowRight className="ml-2 h-4 w-4" />
+              Book a free demo <ArrowRight className="ml-2 h-4 w-4" />
             </StrategyButton>
           </div>
+          <p className="mt-3 text-sm text-white/45">First demo within 7 days, built on your own data.</p>
         </section>
 
         <section className="mx-auto grid max-w-7xl gap-5 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-10">
@@ -91,6 +92,20 @@ export default function ServicePage({ page }) {
                 <p className="mt-2 text-sm leading-7 text-white/60">{a}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10" data-testid="service-demo-cta">
+          <div className="rounded-[1.9rem] border border-violet-300/20 bg-[linear-gradient(135deg,rgba(139,92,246,0.18),rgba(255,255,255,0.03))] p-6 sm:p-10">
+            <h2 className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">See it working on your data.</h2>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-white/60">
+              Share your real material and get a working first demo within 7 days.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <StrategyButton size="lg" className="w-full rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/90 sm:w-auto">
+                Book a free demo <ArrowRight className="ml-2 h-4 w-4" />
+              </StrategyButton>
+            </div>
           </div>
         </section>
 

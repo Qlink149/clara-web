@@ -240,7 +240,7 @@ export const meshBackground = "https://customer-assets.emergentagent.com/job_cla
 // Logo URL - white logo only
 export const whiteLogo = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/afgl66uy_White%20Full%20Logo.png";
 
-export function StrategyButton({ className = "", size = "default", children = "Book a strategy call" }) {
+export function StrategyButton({ className = "", size = "default", children = "Book a free demo" }) {
   return (
     <a
       href={whatsappLink}
@@ -747,7 +747,7 @@ export default function App() {
 
                       <div className="mt-auto flex w-full flex-col gap-3 pt-8 sm:flex-row sm:flex-wrap">
                         <StrategyButton className="w-full rounded-full bg-white text-[#0A0618] hover:bg-white/90 sm:w-auto">
-                          Book Strategy Call
+                          Book a free demo
                         </StrategyButton>
                         {study.href ? (
                           <a href={study.href} target="_blank" rel="noreferrer" className="w-full sm:w-auto" data-testid="case-study-link">
