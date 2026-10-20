@@ -10,6 +10,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-JVLDX960N7');
+      document.addEventListener('click',function(ev){var a=ev.target&&ev.target.closest&&ev.target.closest('a,button');if(!a)return;var h=a.getAttribute('href')||'';var t=(a.innerText||a.textContent||'').trim().replace(/\s+/g,' ').slice(0,100);if(/wa\.me|whatsapp\.com/i.test(h)||/book a free demo|interested/i.test(t)){if(typeof gtag==='function')gtag('event','demo_click',{button_text:t,page_location:location.href,link_url:h,transport_type:'beacon'});}},true);
     </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
