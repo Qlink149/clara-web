@@ -60,7 +60,7 @@ export default function AgentLanding({ page }) {
             <div className="mt-8 text-sm font-medium text-[#3B3752]">{page.heroStatsLabel}</div>
             <div className="mt-3"><Stats items={page.heroStats} /></div>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div className={`grid gap-4 ${page.heroImages.length > 1 ? "sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2" : ""}`}>
             {page.heroImages.map(([s, c]) => <Shot key={s} src={s} caption={c} />)}
           </div>
         </section>
@@ -85,7 +85,7 @@ export default function AgentLanding({ page }) {
               ))}
             </ul>
           )}
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className={`mt-6 grid gap-4 sm:grid-cols-2 ${page.wideImages ? "" : "lg:grid-cols-4"}`}>
             {page.moreImages.map(([s, c]) => <Shot key={s} src={s} caption={c} />)}
           </div>
           <p className="mt-3 text-sm text-[#5C5775]">{page.imagesNote}</p>
