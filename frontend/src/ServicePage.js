@@ -1,144 +1,115 @@
 import React from "react";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { StrategyButton, meshBackground, whiteLogo } from "@/App";
+import { ChevronRight } from "lucide-react";
 import { servicePages } from "@/servicePages";
 import "@/App.css";
 import AgentLanding from "@/AgentLanding";
+import { SiteHeader, SiteFooter, TravelStar, WaButton, Star, useSiteMotion } from "@/components/Site";
 
-export default function ServicePage({ page }) {
-  if (page.landing) return <AgentLanding page={page} />;
+function ServiceBody({ page }) {
+  useSiteMotion();
   const others = servicePages.filter((s) => s.path !== page.path);
   return (
-    <div className="min-h-screen w-full min-w-0 bg-[#070312] text-white selection:bg-violet-300/30" data-testid="service-page">
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <img src={meshBackground} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,3,18,0.12),rgba(7,3,18,0.45)_45%,rgba(7,3,18,0.92)_100%)]" />
-      </div>
-
-      <header className="sticky top-0 z-40 border-b border-white/8 bg-[#070312]/70 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-10">
-          <a href="/" aria-label="Clara AI home" className="inline-flex min-h-[44px] items-center"><img src={whiteLogo} alt="Clara AI" className="h-7 w-auto max-w-[140px] object-contain md:h-8" /></a>
-          <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
-            <a href="/#solutions" className="transition hover:text-white">Solutions</a>
-            <a href="/#case-studies" className="transition hover:text-white">Case studies</a>
-            <a href="/blog/" className="transition hover:text-white">Blog</a>
-            <a href="/ai-linkedin-outreach-agent" className="transition hover:text-white">LinkedIn Agent</a>
-            <a href="/ai-seo-agent" className="transition hover:text-white">SEO Agent</a>
-            <a href="/#contact" className="transition hover:text-white">Contact</a>
-          </nav>
-          <StrategyButton size="sm" className="rounded-full">Book a free demo</StrategyButton>
-        </div>
-      </header>
-
+    <div className="site min-h-screen w-full" data-testid="service-page">
+      <SiteHeader />
+      <TravelStar />
       <main>
-        <section className="mx-auto max-w-7xl px-4 pt-16 pb-10 sm:px-6 sm:pt-24 lg:px-10">
-          <nav className="text-sm text-white/40" aria-label="Breadcrumb">
-            <a href="/" className="hover:text-white">Clara AI</a> <span>/</span> <span>{page.name}</span>
-          </nav>
-          <div className="mt-6 text-sm uppercase tracking-[0.26em] text-white/40">{page.eyebrow}</div>
-          <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-6xl">{page.headline}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/60">{page.intro}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <StrategyButton size="lg" className="rounded-full">
-              Book a free demo <ArrowRight className="ml-2 h-4 w-4" />
-            </StrategyButton>
-          </div>
-          <p className="mt-3 text-sm text-white/45">{page.heroNote || "First demo within 7 days, built on your own data."}</p>
-        </section>
-
-
-        {page.languages && (<section className="mx-auto grid max-w-7xl gap-5 px-4 py-10 sm:px-6 md:grid-cols-2 lg:px-10">
-          <Card className="rounded-[1.9rem] border-white/10 bg-white/[0.035] text-white shadow-none">
-            <CardContent className="p-5 sm:p-7">
-              <h2 className="text-2xl font-medium tracking-[-0.03em]">Who it's for</h2>
-              <ul className="mt-4 space-y-3 text-sm leading-7 text-white/60">
-                {page.whoFor.map((w) => (
-                  <li key={w} className="flex gap-2"><ChevronRight className="mt-1.5 h-4 w-4 shrink-0 text-violet-200" />{w}</li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-          <Card className="rounded-[1.9rem] border-white/10 bg-white/[0.035] text-white shadow-none">
-            <CardContent className="p-5 sm:p-7">
-              <h2 className="text-2xl font-medium tracking-[-0.03em]">Languages</h2>
-              <p className="mt-4 text-sm leading-7 text-white/60">{page.languages}</p>
-              <h2 className="mt-8 text-2xl font-medium tracking-[-0.03em]">First demo within 7 days</h2>
-              <p className="mt-4 text-sm leading-7 text-white/60">
-                Send us your real material and you get a working version 1 demo within 7 days, built on your own data.
-              </p>
-            </CardContent>
-          </Card>
-        </section>)}
-
-        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
-          <div className="text-sm uppercase tracking-[0.26em] text-white/40">{page.angle ? "How we start" : "How it works"}</div>
-          <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{page.angle ? "How this would work for you." : "From your workflow to a working system."}</h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {page.steps.map(([t, d], i) => (
-              <Card key={t} className="rounded-[1.9rem] border-white/10 bg-white/[0.035] text-white shadow-none">
-                <CardContent className="p-5 sm:p-7">
-                  <div className="text-sm text-violet-200">0{i + 1}</div>
-                  <h3 className="mt-3 text-xl font-medium">{t}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/60">{d}</p>
-                </CardContent>
-              </Card>
-            ))}
+        <section className="sec-dark grain relative" style={{ paddingTop: 140, paddingBottom: 80 }}>
+          <div className="bg" style={{ backgroundImage: "url(/brand/grad-1.webp)" }} />
+          <Star className="star-glow pointer-events-none absolute right-[5%] top-[120px] z-[1] hidden w-[150px] md:block lg:w-[200px]" />
+          <div className="wrap">
+            <nav className="text-sm text-white/55" aria-label="Breadcrumb">
+              <a href="/" className="inline-flex min-h-[44px] items-center hover:text-white">Clara AI</a> <span>/</span> <span>{page.name}</span>
+            </nav>
+            <div className="eyebrow mt-4">{page.eyebrow}</div>
+            <h1 className="h-lg mt-5 max-w-4xl">{page.headline}</h1>
+            <p className="lead mt-6 max-w-3xl">{page.intro}</p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><WaButton variant="light">Book a free demo</WaButton></div>
+            <p className="mt-3 text-sm text-white/60">{page.heroNote || "First demo within 7 days, built on your own data."}</p>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
-          <div className="text-sm uppercase tracking-[0.26em] text-white/40">FAQ</div>
-          <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">{page.name}: common questions</h2>
-          <div className="mt-8 space-y-4">
-            {page.faqs.map(([q, a]) => (
-              <div key={q} className="rounded-2xl border border-white/8 bg-white/[0.03] px-5 py-5">
-                <h3 className="text-lg font-medium">{q}</h3>
-                <p className="mt-2 text-sm leading-7 text-white/60">{a}</p>
+        {page.languages && (
+          <section className="sec sec-light">
+            <div className="wrap grid gap-5 md:grid-cols-2">
+              <div className="card rv">
+                <h2 className="h-md">Who it's for</h2>
+                <ul className="mt-4 space-y-3 text-[#4A4566]">
+                  {page.whoFor.map((w) => (<li key={w} className="flex gap-2"><ChevronRight className="mt-1 h-4 w-4 shrink-0 text-[#5D27CA]" />{w}</li>))}
+                </ul>
               </div>
-            ))}
-          </div>
-        </section>
+              <div className="card rv">
+                <h2 className="h-md">Languages</h2>
+                <p className="mt-4 text-[#4A4566]">{page.languages}</p>
+                <h2 className="h-md mt-8">First demo within 7 days</h2>
+                <p className="mt-4 text-[#4A4566]">Send us your real material and you get a working version 1 demo within 7 days, built on your own data.</p>
+              </div>
+            </div>
+          </section>
+        )}
 
-        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10" data-testid="service-demo-cta">
-          <div className="rounded-[1.9rem] border border-violet-300/20 bg-[linear-gradient(135deg,rgba(139,92,246,0.18),rgba(255,255,255,0.03))] p-6 sm:p-10">
-            <h2 className="text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">See it working on your data.</h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-white/60">
-              {page.ctaText || "Share your real material and get a working first demo within 7 days."}
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <StrategyButton size="lg" className="w-full rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/90 sm:w-auto">
-                Book a free demo <ArrowRight className="ml-2 h-4 w-4" />
-              </StrategyButton>
+        <section className="sec sec-mist">
+          <div className="wrap">
+            <div className="eyebrow rv">{page.angle ? "How we start" : "How it works"}</div>
+            <h2 className="h-lg mt-4 rv">{page.angle ? "How this would work for you." : "From your workflow to a working system."}</h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {page.steps.map(([t, d], i) => (
+                <div key={t} className="card rv">
+                  <div className="font-semibold text-[#5D27CA]">0{i + 1}</div>
+                  <h3 className="mt-3 text-xl font-semibold">{t}</h3>
+                  <p className="mt-2 text-[#4A4566]">{d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10">
-          <h2 className="text-2xl font-medium tracking-[-0.03em]">Read more on the blog</h2>
-          <ul className="mt-4 space-y-3 text-white/70">
-            {page.blog.map(([t, href]) => (
-              <li key={href}><a href={href} className="underline decoration-white/20 underline-offset-4 hover:text-white">{t}</a></li>
-            ))}
-          </ul>
-          <h2 className="mt-10 text-2xl font-medium tracking-[-0.03em]">Other Clara AI services</h2>
-          <ul className="mt-4 flex flex-wrap gap-3">
-            {others.map((o) => (
-              <li key={o.path}><a href={o.path} className="inline-block rounded-full border border-white/10 bg-white/[0.04] inline-flex min-h-[44px] items-center px-4 py-2 text-sm text-white/70 hover:text-white">{o.name}</a></li>
-            ))}
-          </ul>
+        <section className="sec sec-light">
+          <div className="wrap">
+            <div className="eyebrow rv">FAQ</div>
+            <h2 className="h-lg mt-4 rv">{page.name}: common questions</h2>
+            <div className="mt-8 grid gap-3 md:grid-cols-2">
+              {page.faqs.map(([q, a]) => (
+                <div key={q} className="card rv">
+                  <h3 className="text-lg font-semibold">{q}</h3>
+                  <p className="mt-2 text-[#4A4566]">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="sec sec-dark grain" data-testid="service-demo-cta">
+          <div className="bg" style={{ backgroundImage: "url(/brand/grad-2.webp)" }} />
+          <div className="wrap">
+            <h2 className="h-lg max-w-3xl rv">See it working on <span className="serif text-[#C9B8FF]">your</span> data.</h2>
+            <p className="lead mt-4 max-w-2xl rv">{page.ctaText || "Share your real material and get a working first demo within 7 days."}</p>
+            <div className="mt-8 rv"><WaButton variant="light">Book a free demo</WaButton></div>
+          </div>
+        </section>
+
+        <section className="sec sec-light">
+          <div className="wrap">
+            <h2 className="h-md">Read more on the blog</h2>
+            <ul className="mt-4 space-y-1">
+              {page.blog.map(([t, href]) => (
+                <li key={href}><a href={href} className="inline-flex min-h-[44px] items-center text-[#1F0798] underline decoration-[#8D57DE]/40 underline-offset-4 hover:text-[#5D27CA]">{t}</a></li>
+              ))}
+            </ul>
+            <h2 className="h-md mt-10">Other Clara AI services</h2>
+            <ul className="mt-4 flex flex-wrap gap-3">
+              {others.map((o) => (
+                <li key={o.path}><a href={o.path} className="inline-flex min-h-[44px] items-center rounded-full border border-[#E2DCF7] bg-white px-5 hover:border-[#8D57DE]">{o.name}</a></li>
+              ))}
+            </ul>
+          </div>
         </section>
       </main>
-
-      <footer className="border-t border-white/8 px-4 py-8 sm:px-6 lg:px-10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
-          <img src={whiteLogo} alt="Clara AI" className="h-6 w-auto max-w-[120px] object-contain" />
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Services">
-            {servicePages.map((o) => (<a key={o.path} href={o.path} className="inline-flex min-h-[44px] items-center transition hover:text-white">{o.name}</a>))}
-            <a href="/blog/" className="inline-flex min-h-[44px] items-center transition hover:text-white">Blog</a>
-          </nav>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
+}
+
+export default function ServicePage({ page }) {
+  if (page.landing) return <AgentLanding page={page} />;
+  return <ServiceBody page={page} />;
 }

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
-  ChevronRight,
-  Menu,
-  Sparkles,
   PhoneCall,
   MessageSquare,
   LayoutDashboard,
@@ -16,17 +12,12 @@ import {
   CalendarDays,
   Truck,
   GraduationCap,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { waLink, useWhatsAppLink } from "@/lib/whatsapp";
 import "@/App.css";
+import { SiteHeader, SiteFooter, TravelStar, WaButton, Star, LogoGrid, Scrub, CLIENTS, useSiteMotion } from "@/components/Site";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
 
 export const whatsappLink = waLink();
 
@@ -40,7 +31,7 @@ const caseStudies = [
     solution:
       "We built KIA, an AI WhatsApp concierge for the full customer lifecycle — product discovery and recommendations, order tracking, returns, and complaint resolution. The bot auto-generates tickets, keeps conversation history, tags issues, and escalates to a human when needed, synced live with their CRM and helpdesk.",
     result:
-      "Customers get instant answers on product info, order status, and support 24/7 on WhatsApp. Automated ticketing and logs give the team full visibility, and human handoff means complex issues are never dropped.",
+      "Customers get instant answers on product info, order status, and support on WhatsApp, any time they message. Automated ticketing and logs give the team full visibility, and human handoff means complex issues are never dropped.",
   },
   {
     title: "One Reside",
@@ -233,673 +224,209 @@ export function ClaraLogo() {
   );
 }
 
-export default function App() {
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+const TYPED = ["AI calling agents", "WhatsApp chatbots", "live dashboards", "custom AI agents"];
+
+// Typing line. The first phrase is server-rendered so the layout never shifts; height is reserved in CSS.
+function Typing() {
+  const [txt, setTxt] = useState(TYPED[0]);
   useEffect(() => {
-    const move = (e) => {
-      setMouse({ x: e.clientX, y: e.clientY });
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    let w = 0, n = TYPED[0].length, del = true, t;
+    const step = () => {
+      if (del) {
+        n -= 1;
+        if (n === 0) { del = false; w = (w + 1) % TYPED.length; }
+      } else {
+        n += 1;
+      }
+      setTxt(TYPED[w].slice(0, n));
+      if (!del && n === TYPED[w].length) { del = true; t = setTimeout(step, 2000); return; }
+      t = setTimeout(step, del ? 35 : 65);
     };
-    window.addEventListener("mousemove", move);
-    document.documentElement.style.scrollBehavior = "smooth";
-    return () => {
-      window.removeEventListener("mousemove", move);
-    };
+    t = setTimeout(step, 2200);
+    return () => clearTimeout(t);
   }, []);
+  return <span className="type-line" aria-hidden="true">{txt || "\u00a0"}<span className="caret" /></span>;
+}
 
+export default function App() {
+  useSiteMotion();
+  const featured = caseStudies.filter((c) => ["Hiranandani Parks", "Vijay Sales", "Nilkamal Sleep"].includes(c.title));
+  const featuredStat = { "Hiranandani Parks": ["195", "qualified leads from 6,000+ calls in 2 days"], "Vijay Sales": ["1,867", "courtesy calls a day, 5+ agents freed"], "Nilkamal Sleep": ["Real time", "dealer incentive settlement, down from 15–20 days"] };
   return (
-    <div className="min-h-screen w-full min-w-0 bg-[#070312] text-white selection:bg-violet-300/30" data-testid="clara-website">
-      {/* Background Effects - Single mesh gradient */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute rounded-full hidden md:block"
-          animate={{ x: mouse.x - 220, y: mouse.y - 220 }}
-          transition={{ type: "spring", stiffness: 55, damping: 18, mass: 0.6 }}
-          style={{
-            width: 440,
-            height: 440,
-            background: "radial-gradient(circle, rgba(139,92,246,0.42), transparent 68%)",
-            filter: "blur(85px)",
-            willChange: "transform",
-          }}
-        />
-
-        <motion.img
-          src={meshBackground}
-          alt="AI automation workflow background"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-          animate={{ y: [0, -10, 0], x: [0, 8, 0] }}
-          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-          style={{ willChange: "transform" }}
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,3,18,0.12),rgba(7,3,18,0.45)_45%,rgba(7,3,18,0.92)_100%)]" />
-      </div>
-
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-white/8 bg-[#070312]/70 backdrop-blur-xl" data-testid="header">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-10">
-          <ClaraLogo />
-
-          <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex" data-testid="desktop-nav">
-            <a href="#about" className="transition hover:text-white">
-              Why Clara
-            </a>
-            <a href="#solutions" className="transition hover:text-white">
-              Solutions
-            </a>
-            <a href="#case-studies" className="transition hover:text-white">
-              Case Studies
-            </a>
-            <a href="/blog/" className="transition hover:text-white">
-              Blog
-            </a>
-            <a href="/ai-linkedin-outreach-agent" className="transition hover:text-white">
-              LinkedIn Agent
-            </a>
-            <a href="/ai-seo-agent" className="transition hover:text-white">
-              SEO Agent
-            </a>
-            <a href="#contact" className="transition hover:text-white">
-              Contact
-            </a>
-          </nav>
-
-          <div className="hidden md:block">
-            <StrategyButton className="rounded-full bg-white text-[#0A0618] hover:bg-white/90" />
-          </div>
-
-          <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/70 md:hidden"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileMenuOpen}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-testid="mobile-menu-button"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/8 bg-[#070312]/95 backdrop-blur-xl" data-testid="mobile-menu">
-            <nav className="flex flex-col gap-1 px-4 py-4 sm:px-6">
-              <a href="#about" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
-                Why Clara
-              </a>
-              <a href="#solutions" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
-                Solutions
-              </a>
-              <a href="#case-studies" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
-                Case Studies
-              </a>
-              <a href="/blog/" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
-                Blog
-              </a>
-              <a href="/ai-linkedin-outreach-agent" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition">
-                LinkedIn Agent
-              </a>
-              <a href="/ai-seo-agent" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition">
-                SEO Agent
-              </a>
-              <a href="#contact" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
-                Contact
-              </a>
-              <StrategyButton className="rounded-full bg-white text-[#0A0618] hover:bg-white/90 w-full mt-2" />
-            </nav>
-          </div>
-        )}
-      </header>
-
+    <div className="site min-h-screen w-full" data-testid="home">
+      <SiteHeader />
+      <TravelStar />
       <main>
-        {/* Hero Section */}
-        <section className="relative mx-auto max-w-7xl px-4 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-16 lg:px-10 lg:pb-28 lg:pt-24" data-testid="hero-section">
-          <div className="grid items-end gap-14 lg:grid-cols-[1.15fr_0.85fr]">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={fadeUp}
-              transition={{ duration: 0.7 }}
-              className="min-w-0 max-w-3xl"
-            >
-              <div className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.12em] text-white/65 sm:px-4 sm:text-xs sm:tracking-[0.22em]">
-                <Sparkles className="h-3.5 w-3.5 shrink-0" />
-                Trusted by enterprise teams across industries
-              </div>
-
-              <h1 className="max-w-4xl text-[2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-white sm:text-6xl sm:leading-[0.95] lg:text-7xl" data-testid="hero-title">
-                AI implementation for businesses that need
-                <span className="bg-[linear-gradient(135deg,#FFFFFF,#CDB8FF_60%,#8C63FF)] bg-clip-text text-transparent">
-                  {" "}
-                  results, not experiments.
-                </span>
+        {/* Hero */}
+        <section id="about" className="sec-dark grain relative" style={{ paddingTop: 150, paddingBottom: 96 }}>
+          <div className="bg" style={{ backgroundImage: "url(/brand/grad-1.webp)" }} />
+          <Star className="star-glow pointer-events-none absolute right-[4%] top-[92px] z-[1] w-[64px] opacity-95 sm:top-[110px] sm:w-[170px] lg:right-[9%] lg:top-[140px] lg:w-[230px]" />
+          <div className="wrap">
+            <div className="max-w-4xl">
+              <span className="eyebrow">AI implementation partner</span>
+              <h1 className="h-xl mt-6">
+                AI implementation for businesses that need <span className="serif text-[#C9B8FF]">results,</span> not experiments.
               </h1>
-
-              <div className="mt-10 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <StrategyButton
-                  size="lg"
-                  className="w-full rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/92 sm:w-auto"
-                />
-                <a href="#case-studies" className="w-full sm:w-auto">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="min-h-[44px] w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
-                    data-testid="view-case-studies-button"
-                  >
-                    View case studies
-                  </Button>
-                </a>
+              <p className="h-md mt-6 font-medium text-white/85" aria-label="We build AI calling agents, WhatsApp chatbots, live dashboards and custom AI agents">
+                We build <Typing />
+              </p>
+              <p className="lead mt-5 max-w-2xl">
+                Clara AI studies how your team works today, then builds and runs the AI that takes the manual work off their plate. Built around your workflow. Done for you.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <WaButton variant="light">Book a free demo</WaButton>
+                <a href="#case-studies" className="btn btn-ghost">See client results</a>
               </div>
+              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-white/80">
+                {["Free demo", "First demo within 7 days", "Built on your own data"].map((f) => (
+                  <li key={f} className="chip"><ShieldCheck className="h-4 w-4" />{f}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-16 grid grid-cols-2 gap-6 border-t border-white/15 pt-8 md:grid-cols-4">
+              {[["60–70%", "less manual workflow time"], ["5–12%", "sales uplift"], ["19", "clients"], ["14", "people on the AI team"]].map(([n, l]) => (
+                <div key={l}><div className="stat">{n}</div><div className="mt-2 text-sm text-white/65">{l}</div></div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className="mt-12 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3" data-testid="stats-section">
+        {/* Clients */}
+        <section className="sec sec-light" style={{ paddingTop: 64, paddingBottom: 64 }}>
+          <div className="wrap grid gap-8 lg:grid-cols-[1fr_2fr] lg:items-center">
+            <div className="rv">
+              <span className="eyebrow">Trusted by 19 clients</span>
+              <h2 className="h-md mt-4">Teams in real estate, retail, healthcare, media and manufacturing run on Clara AI.</h2>
+            </div>
+            <div className="rv"><LogoGrid clients={CLIENTS} cells={8} /></div>
+          </div>
+        </section>
+
+        {/* Statement scrub */}
+        <section className="sec sec-mist">
+          <div className="wrap">
+            <Scrub className="h-lg max-w-5xl" text="Most AI projects stall as *experiments.* We start with the work your team already does, then build the system that does it for them, and *keep it running.*" />
+          </div>
+        </section>
+
+        {/* Solutions */}
+        <section id="solutions" className="sec sec-light">
+          <div className="wrap">
+            <span className="eyebrow rv">Solutions</span>
+            <h2 className="h-lg mt-4 max-w-3xl rv">What we build for you</h2>
+            <div className="mt-10 grid gap-4 md:grid-cols-2">
+              {solutions.map(({ icon: Icon, title, href, text }) => (
+                <a key={href} href={href} className="card group flex flex-col gap-4 transition hover:-translate-y-1 hover:border-[#8D57DE] rv" data-cursor="big">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E9E5FF] text-[#5D27CA]"><Icon className="h-6 w-6" /></span>
+                  <h3 className="text-2xl font-semibold">{title}</h3>
+                  <p className="card-muted">{text}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 font-semibold text-[#5D27CA]">Learn more <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
+                </a>
+              ))}
+              {[["/ai-linkedin-outreach-agent", "AI LinkedIn Outreach Agent", "Finds your buyers, connects and messages them, and sends every reply to your WhatsApp."], ["/ai-seo-agent", "AI SEO Agent", "Writes and publishes search-ready blog posts for you, checked by our team."]].map(([href, t, d]) => (
+                <a key={href} href={href} className="card group flex items-center justify-between gap-4 bg-[#0C0828] text-white rv" style={{ background: "#0C0828", borderColor: "#1F0798" }} data-cursor="big">
+                  <div><div className="text-xs font-semibold uppercase tracking-[.14em] text-[#C9B8FF]">New agent</div><h3 className="mt-2 text-xl font-semibold">{t}</h3><p className="mt-1 text-white/65">{d}</p></div>
+                  <ArrowRight className="h-5 w-5 shrink-0 text-[#C9B8FF] transition group-hover:translate-x-1" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Featured results, dark */}
+        <section className="sec sec-dark grain">
+          <div className="bg" style={{ backgroundImage: "url(/brand/grad-2.webp)" }} />
+          <div className="wrap">
+            <span className="eyebrow rv">Results</span>
+            <h2 className="h-lg mt-4 max-w-3xl rv">Real numbers from <span className="serif text-[#C9B8FF]">live</span> systems</h2>
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              {featured.map((c) => (
+                <div key={c.title} className="card rv">
+                  <div className="text-sm text-white/60">{c.title} · {c.tag}</div>
+                  <div className="stat mt-4" style={{ fontSize: "clamp(36px,4vw,52px)" }}>{featuredStat[c.title][0]}</div>
+                  <p className="mt-2 text-white/80">{featuredStat[c.title][1]}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How we work */}
+        <section className="sec sec-light">
+          <div className="wrap grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div>
+              <span className="eyebrow rv">How we work</span>
+              <h2 className="h-lg mt-4 rv">We listen before we build</h2>
+              <ol className="mt-8 space-y-6">
                 {[
-                  ["60–70%", "reduction in manual workflow time"],
-                  ["5–12%", "improvement in sales revenue"],
-                  ["19", "active enterprise relationships"],
-                ].map(([value, label]) => (
-                  <div
-                    key={value}
-                    className="rounded-3xl border border-white/10 bg-white/[0.04] px-5 py-5 backdrop-blur-sm"
-                    data-testid="stat-card"
-                  >
-                    <div className="text-2xl font-semibold tracking-[-0.03em] text-white">
-                      {value}
-                    </div>
-                    <div className="mt-1 text-sm leading-6 text-white/55">{label}</div>
-                  </div>
+                  ["Diagnose the workflow", "We identify workflow friction, repetitive manual work, and missed visibility across teams."],
+                  ["Select the right solution", "We choose the best-fit tools or design a custom architecture based on your reality."],
+                  ["Build, deploy, and refine", "We launch the system, train teams, and keep improving the output after go-live."],
+                ].map(([t, d], i) => (
+                  <li key={t} className="flex gap-4 rv">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#5D27CA] font-semibold text-white">{i + 1}</span>
+                    <div><h3 className="text-xl font-semibold">{t}</h3><p className="mt-1 text-[#4A4566]">{d}</p></div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div className="rv">
+              <img src="/brand/team-daylight.webp" srcSet="/brand/team-daylight-sm.webp 640w, /brand/team-daylight.webp 1200w" sizes="(min-width:1024px) 560px, 100vw" alt="Clara AI team working through a client workflow" loading="lazy" decoding="async" width="1200" height="900" className="h-auto w-full rounded-[28px] object-cover" />
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {[["Not just tool sellers", "We choose the right product when it exists and build custom systems when it doesn't."], ["One team", "Business understanding and technical implementation stay under one roof."]].map(([t, d]) => (
+                  <div key={t} className="card !p-4"><div className="font-semibold">{t}</div><p className="mt-1 text-sm text-[#4A4566]">{d}</p></div>
                 ))}
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="relative min-w-0"
-              data-testid="hero-card"
-            >
-              <div className="absolute -inset-4 hidden rounded-[2.5rem] bg-[linear-gradient(180deg,rgba(130,88,255,0.14),rgba(255,255,255,0.02))] blur-2xl sm:block" />
-              <div className="relative min-w-0 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-4 shadow-2xl shadow-black/30 backdrop-blur-xl sm:rounded-[2rem] sm:p-5">
-                <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#120B27]/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="min-w-0">
-                    <div className="text-sm text-white/45">Clara AI</div>
-                    <div className="text-base font-medium text-white sm:text-lg">
-                      Your AI partner for businesses
-                    </div>
-                  </div>
-                  <div className="w-fit shrink-0 rounded-full border border-violet-300/20 bg-violet-300/10 px-3 py-1 text-xs text-violet-100">
-                    Live systems
-                  </div>
-                </div>
-
-                <div className="mt-4 grid gap-4">
-                  <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4 sm:p-5">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="min-w-0">
-                        <div className="text-xs uppercase tracking-[0.16em] text-white/35 sm:tracking-[0.22em]">
-                          How we work
-                        </div>
-                        <div className="mt-2 text-lg font-medium text-white sm:text-xl">
-                          Map. Build. Deploy.
-                        </div>
-                      </div>
-                      <div className="w-fit shrink-0 rounded-2xl bg-[linear-gradient(135deg,rgba(132,87,255,0.35),rgba(255,255,255,0.08))] px-3 py-2 text-sm text-white/80">
-                        Fractional AI team
-                      </div>
-                    </div>
-                    <div className="mt-5 space-y-3">
-                      {[
-                        "Map pain points across real workflows",
-                        "Pick the right tools or build custom systems",
-                        "Deploy dashboards, agents, and automations",
-                      ].map((item) => (
-                        <div
-                          key={item}
-                          className="flex items-start gap-3 rounded-2xl border border-white/7 bg-white/[0.02] px-4 py-3 text-sm text-white/70"
-                        >
-                          <div className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-violet-300" />
-                          <span className="min-w-0">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-[1.5rem] border border-white/8 bg-[linear-gradient(180deg,rgba(152,108,255,0.12),rgba(255,255,255,0.03))] p-5">
-                      <div className="text-sm text-white/45">Trusted by teams in</div>
-                      <div className="mt-3 text-2xl font-semibold tracking-[-0.03em]">
-                        Real estate, retail, healthcare, insurance, events
-                      </div>
-                    </div>
-                    <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-                      <div className="text-sm text-white/45">Built for</div>
-                      <div className="mt-3 text-2xl font-semibold tracking-[-0.03em]">
-                        Clarity, speed, and operational lift
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Logo Marquee */}
-          <div className="mt-10 overflow-hidden rounded-full border border-white/10 bg-white/[0.03] py-3 sm:mt-14 sm:py-4" data-testid="logo-marquee">
-            <motion.div
-              animate={{ x: [0, -600] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="flex min-w-max items-center gap-10 px-6 text-xs uppercase tracking-[0.2em] text-white/45 sm:text-sm sm:tracking-[0.28em]"
-            >
-              {[
-                "Hiranandani",
-                "Vijay Sales",
-                "Nilkamal",
-                "Apex Hospitals",
-                "Wonder Cement",
-                "iDAC",
-                "Hiranandani",
-                "Vijay Sales",
-                "Nilkamal",
-                "Apex Hospitals",
-                "Wonder Cement",
-                "iDAC",
-              ].map((item, index) => (
-                <span key={`${item}-${index}`}>{item}</span>
-              ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Why Clara Section */}
-        <section id="about" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="about-section">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={fadeUp}
-            transition={{ duration: 0.7 }}
-            className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]"
-          >
-            <div>
-              <div className="text-sm uppercase tracking-[0.26em] text-white/40">
-                Why Clara AI
-              </div>
-              <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                We solve business problems first. AI comes after.
-              </h2>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2">
-              {[
-                [
-                  "We listen before we build",
-                  "We study the workflow, the bottlenecks, and the people already doing the work.",
-                ],
-                [
-                  "Not just tool sellers",
-                  "We choose the right product when it exists and build custom systems when it doesn't.",
-                ],
-                [
-                  "Strategy + execution",
-                  "Business understanding and technical implementation stay under one roof.",
-                ],
-                [
-                  "Still there after deployment",
-                  "We refine, monitor, and improve once the system goes live.",
-                ],
-              ].map(([title, text]) => (
-                <Card
-                  key={title}
-                  className="rounded-[1.75rem] border-white/10 bg-white/[0.035] text-white shadow-none"
-                  data-testid="why-clara-card"
-                >
-                  <CardContent className="p-6">
-                    <div className="text-lg font-medium">{title}</div>
-                    <p className="mt-3 text-sm leading-7 text-white/60">{text}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Process Section */}
-        <section className="bg-[#EDE3FF] text-[#0F0822]" data-testid="process-section">
-          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={fadeUp}
-              transition={{ duration: 0.7 }}
-              className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
-            >
-              <div>
-                <div className="text-sm uppercase tracking-[0.26em] text-[#4F3D7A]/60">
-                  Our process
-                </div>
-                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                  A practical path from problem statement to deployed system.
-                </h3>
-              </div>
-              <div className="space-y-4">
-                {[
-                  [
-                    "01",
-                    "Map pain points",
-                    "We identify workflow friction, repetitive manual work, and missed visibility across teams.",
-                  ],
-                  [
-                    "02",
-                    "Select the right solution",
-                    "We choose the best-fit tools or design a custom architecture based on your reality.",
-                  ],
-                  [
-                    "03",
-                    "Build, deploy, and refine",
-                    "We launch the system, train teams, and keep improving the output after go-live.",
-                  ],
-                ].map(([num, title, text]) => (
-                  <div
-                    key={num}
-                    className="rounded-[1.5rem] border border-[#B9A2EA]/35 bg-white/60 p-5 backdrop-blur-sm sm:rounded-[1.75rem] sm:p-6"
-                    data-testid="process-step"
-                  >
-                    <div className="flex items-start gap-3 sm:gap-5">
-                      <div className="rounded-2xl bg-[#120B27] px-3 py-2 text-sm font-medium text-white">
-                        {num}
-                      </div>
-                      <div className="min-w-0">
-                        <div className="text-xl font-medium">{title}</div>
-                        <p className="mt-2 max-w-2xl text-base leading-7 text-[#3A2C57]/75">
-                          {text}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Solutions Section */}
-        <section id="solutions" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="solutions-section">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            variants={fadeUp}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-              <div className="max-w-3xl">
-                <div className="text-sm uppercase tracking-[0.26em] text-white/40">
-                  Solutions
-                </div>
-                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                  Built around the system you actually run.
-                </h3>
-              </div>
-              <p className="max-w-2xl text-white/60">
-                AI calling agents, WhatsApp agents, dashboards, workflow automation,
-                and custom AI systems — all designed to fit existing business
-                operations, not replace them blindly.
-              </p>
-            </div>
-
-            <div className="mt-10 grid gap-5 md:grid-cols-2">
-              {solutions.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <motion.a key={item.title} href={item.href} aria-label={`${item.title}: learn more`} whileHover={{ y: -4 }} transition={{ duration: 0.22 }} className="group block h-full rounded-[1.9rem]" data-testid="solution-card-link">
-                    <Card className="h-full rounded-[1.9rem] border-white/10 bg-white/[0.035] text-white shadow-none" data-testid="solution-card">
-                      <CardContent className="p-5 sm:p-7">
-                        <div className="flex items-center justify-between">
-                          <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-3">
-                            <Icon className="h-5 w-5 text-violet-200" />
-                          </div>
-                          <ChevronRight className="h-5 w-5 text-white/35 transition group-hover:text-white/70" />
-                        </div>
-                        <div className="mt-6 text-2xl font-medium tracking-[-0.03em]">
-                          {item.title}
-                        </div>
-                        <p className="mt-3 text-sm leading-7 text-white/60">{item.text}</p>
-                        <div className="mt-5 inline-flex items-center gap-1 text-sm text-violet-200/80 transition group-hover:text-violet-100">
-                          Learn more <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.a>
-                );
-              })}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Case Studies Section */}
-        <section id="case-studies" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="case-studies-section">
-          <div>
-            <div className="max-w-3xl">
-              <div className="text-sm uppercase tracking-[0.26em] text-white/40">
-                Case studies
-              </div>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                Problem, challenge, and solution from systems already in the field.
-              </h3>
-            </div>
-
-            <div className="mt-10 grid gap-5 lg:grid-cols-2">
-              {caseStudies.map((study) => (
-                <div key={`${study.title}-${study.subtitle}`} className="case-study-card min-w-0 h-full">
-                  <Card
-                    className="group flex h-full min-w-0 flex-col rounded-[1.5rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.03))] text-white shadow-none transition duration-300 hover:border-violet-200/20 hover:bg-[linear-gradient(180deg,rgba(152,108,255,0.09),rgba(255,255,255,0.03))] sm:rounded-[2rem]"
-                    data-testid="case-study-card"
-                  >
-                    <CardContent className="flex h-full min-w-0 flex-col p-5 sm:p-7">
-                      <div className="w-fit max-w-full rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.2em]">
-                        {study.tag}
-                      </div>
-                      <div className="mt-6 text-2xl font-medium tracking-[-0.03em] sm:text-3xl">
-                        {study.title}
-                      </div>
-                      <div className="mt-2 text-sm text-violet-100/80">{study.subtitle}</div>
-
-                      <div className="mt-7 space-y-5">
-                        {[
-                          ["01", "Problem / Challenge", study.challenge],
-                          ["02", "Solution", study.solution],
-                          ["03", "Result", study.result],
-                        ].map(([num, label, text]) => (
-                          <div key={label} className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/40 sm:text-xs sm:tracking-[0.2em]">
-                              <span className="text-violet-200/80">{num}</span>
-                              {label}
-                            </div>
-                            <p
-                              className={`mt-2 text-sm leading-7 ${
-                                label === "Result" ? "text-violet-100/90" : "text-white/65"
-                              }`}
-                            >
-                              {text}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-auto flex w-full flex-col gap-3 pt-8 sm:flex-row sm:flex-wrap">
-                        <StrategyButton className="w-full rounded-full bg-white text-[#0A0618] hover:bg-white/90 sm:w-auto">
-                          Book a free demo
-                        </StrategyButton>
-                        {study.href ? (
-                          <a href={study.href} target="_blank" rel="noreferrer" className="w-full sm:w-auto" data-testid="case-study-link">
-                            <Button
-                              variant="outline"
-                              className="w-full rounded-full border-white/14 bg-white/5 text-white hover:bg-white/10 hover:text-white sm:w-auto"
-                            >
-                              Try it live
-                              <ArrowRight className="h-4 w-4" />
-                            </Button>
-                          </a>
-                        ) : null}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+        {/* All case studies */}
+        <section id="case-studies" className="sec sec-mist">
+          <div className="wrap">
+            <span className="eyebrow rv">Case studies</span>
+            <h2 className="h-lg mt-4 max-w-3xl rv">What we built, and what changed</h2>
+            <div className="mt-10 columns-1 gap-4 md:columns-2 lg:columns-3">
+              {caseStudies.map((c) => (
+                <article key={c.title + c.subtitle} className="card case rv">
+                  <div className="inline-flex rounded-full bg-[#E9E5FF] px-3 py-1 text-xs font-semibold text-[#5D27CA]">{c.tag}</div>
+                  <h3 className="mt-3 text-xl font-semibold">{c.title}</h3>
+                  <div className="text-sm text-[#4A4566]">{c.subtitle}</div>
+                  <p className="mt-3 text-sm leading-6 text-[#4A4566]"><strong className="text-[#0C0828]">Challenge: </strong>{c.challenge}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#4A4566]"><strong className="text-[#0C0828]">What we built: </strong>{c.solution}</p>
+                  <p className="mt-2 text-sm leading-6 text-[#0C0828]"><strong>Result: </strong>{c.result}</p>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Credibility Section */}
-        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10" data-testid="credibility-section">
-          <div className="grid gap-8 rounded-[1.75rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 sm:rounded-[2.25rem] sm:p-8 md:grid-cols-[1fr_auto_1fr] md:items-center lg:p-10">
-            <div>
-              <div className="text-sm uppercase tracking-[0.26em] text-white/40">
-                Credibility
-              </div>
-              <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl">
-                Backed under the Rajasthan Startup Policy and recognised by government institutions.
-              </div>
-            </div>
-            <div className="hidden h-20 w-px bg-white/10 md:block" />
-            <div className="flex items-start gap-3 text-white/60">
-              <ShieldCheck className="mt-1 h-5 w-5 text-violet-200" />
-              <p className="text-sm leading-7">
-                Built for serious operating teams that need implementation support,
-                not just another AI tool demo.
-              </p>
-            </div>
+        {/* Industries */}
+        <section className="sec sec-light" style={{ paddingTop: 64, paddingBottom: 64 }}>
+          <div className="wrap">
+            <h2 className="h-md rv">Industries we work with</h2>
+            <ul className="mt-6 flex flex-wrap gap-3">
+              {industries.map(({ icon: Icon, name }) => (
+                <li key={name} className="inline-flex min-h-[48px] items-center gap-2 rounded-full border border-[#E2DCF7] bg-white px-5 rv"><Icon className="h-4 w-4 text-[#5D27CA]" />{name}</li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        {/* Industries Section */}
-        <section className="bg-[#EDE3FF] text-[#0F0822]" data-testid="industries-section">
-          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
-            <div className="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-center">
-              <div>
-                <div className="text-sm uppercase tracking-[0.26em] text-[#4F3D7A]/60">
-                  Industries
-                </div>
-                <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                  Designed to fit complex businesses across sectors.
-                </h3>
-                <p className="mt-5 max-w-2xl text-base leading-8 text-[#3A2C57]/75">
-                  From retail operations and patient communication to channel
-                  management, event coordination, and logistics workflows — the systems
-                  change, but the approach stays practical.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                {industries.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div
-                      key={item.name}
-                      className="rounded-[1.25rem] border border-[#B9A2EA]/35 bg-white/60 p-4 sm:rounded-[1.6rem] sm:p-5"
-                      data-testid="industry-card"
-                    >
-                      <Icon className="h-5 w-5 text-[#5A35C8]" />
-                      <div className="mt-4 text-sm font-medium sm:text-lg">{item.name}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Quote Section */}
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-10" data-testid="quote-section">
-          <div className="rounded-[1.75rem] border border-white/10 bg-[linear-gradient(135deg,rgba(117,72,255,0.14),rgba(255,255,255,0.03))] p-6 text-center sm:rounded-[2.5rem] sm:p-8 lg:p-14">
-            <div className="mx-auto max-w-4xl text-[1.75rem] font-semibold leading-snug tracking-[-0.03em] text-white sm:text-5xl sm:leading-tight sm:tracking-[-0.05em] lg:text-6xl">
-              Your best employees are humans. Let's stop making them work like robots.
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-10" data-testid="contact-section">
-          <div className="grid gap-8 rounded-[1.75rem] border border-white/10 bg-white/[0.035] p-5 sm:rounded-[2.25rem] sm:p-8 lg:grid-cols-[1fr_0.9fr] lg:p-10">
-            <div>
-              <div className="text-sm uppercase tracking-[0.26em] text-white/40">
-                Contact
-              </div>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
-                Bring us the problem statement. We'll bring the solution.
-              </h3>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-white/60">
-                Whether you need a single automation, a new dashboard, or a full AI
-                rollout across teams, Clara AI can step in as your implementation partner.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <StrategyButton
-                  size="lg"
-                  className="w-full rounded-full bg-white px-7 text-[#0A0618] hover:bg-white/92 sm:w-auto"
-                />
-                <a href="#solutions" className="w-full sm:w-auto">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="min-h-[44px] w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
-                    data-testid="see-solutions-button"
-                  >
-                    See solutions
-                  </Button>
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded-[1.9rem] border border-white/10 bg-[#0C071A] p-6">
-              <div className="text-sm uppercase tracking-[0.24em] text-white/40">
-                Quick details
-              </div>
-              <div className="mt-6 space-y-4 text-sm text-white/70">
-                <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4">
-                  <div className="text-white/45">Company</div>
-                  <div className="mt-1 text-base text-white">Clara AI</div>
-                </div>
-                <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4">
-                  <div className="text-white/45">Positioning</div>
-                  <div className="mt-1 text-base text-white">
-                    AI consulting and implementation partner
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4">
-                  <div className="text-white/45">Best fit</div>
-                  <div className="mt-1 text-base text-white">
-                    Enterprises, legacy businesses, and growing operational teams
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* Contact */}
+        <section id="contact" className="sec sec-dark grain" style={{ paddingTop: 120, paddingBottom: 120 }}>
+          <div className="bg" style={{ backgroundImage: "url(/brand/hills-dusk.webp)" }} />
+          <div className="wrap text-center">
+            <Star className="star-glow mx-auto w-[56px] rv" />
+            <h2 className="h-lg mx-auto mt-6 max-w-3xl rv">See it working on <span className="serif text-[#C9B8FF]">your</span> data.</h2>
+            <p className="lead mx-auto mt-5 max-w-2xl rv">Share your real material and get a working first demo within 7 days. Message us on WhatsApp to book a free demo.</p>
+            <div className="mt-8 flex justify-center rv"><WaButton variant="light">Book a free demo</WaButton></div>
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-white/8 px-4 py-8 sm:px-6 lg:px-10" data-testid="footer">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <img src={whiteLogo} alt="Clara AI" className="h-6 w-auto max-w-[120px] object-contain" />
-          </div>
-          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Services" data-testid="footer-services">
-            <a href="/ai-chatbots" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI Chatbots</a>
-            <a href="/ai-calling-agents" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI Calling Agents</a>
-            <a href="/ai-dashboards" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI Dashboards</a>
-            <a href="/custom-ai-agents" className="inline-flex min-h-[44px] items-center transition hover:text-white">Custom AI Agents</a>
-            <a href="/ai-linkedin-outreach-agent" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI LinkedIn Outreach Agent</a>
-            <a href="/ai-seo-agent" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI SEO Agent</a>
-            <a href="/blog/" className="inline-flex min-h-[44px] items-center transition hover:text-white">Blog</a>
-          </nav>
-          <div className="flex items-center gap-6">
-            <span>AI implementation partner for businesses</span>
-            <span className="hidden md:inline">•</span>
-            <span className="hidden md:inline">Enterprise systems, thoughtfully deployed</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
