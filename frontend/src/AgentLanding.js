@@ -78,7 +78,7 @@ export default function AgentLanding({ page }) {
         {/* Second proof form above/at the fold: trusted-by strip (approved public names) */}
         <section className="border-y border-[#ECE7FA] bg-white py-5">
           <div className={`${wrap} text-center`}>
-            <div className="text-sm font-semibold text-[#3B3752]">14-person AI team. Trusted by 19 clients, including</div>
+            <div className="text-sm font-semibold text-[#3B3752]">Trusted by 19 clients, including</div>
             <ul className="mt-4 grid grid-cols-3 items-center gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-8">
               {clients.map(([f, n]) => (
                 <li key={f} className="flex h-14 items-center justify-center">

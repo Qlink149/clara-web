@@ -22,7 +22,7 @@ export const agentPages = [
     getHeadline: "Everything is run for you, from finding buyers to reporting",
     whyHeadline: "Why Clara AI: a real team that runs this agent on its own LinkedIn",
     why: [
-      ["Built and run by a 14-person AI team", "We use this agent for Clara AI ourselves."],
+      ["Built and run by Clara AI", "We use this agent for Clara AI ourselves."],
       ["Trusted by 19 clients", "Including Hiranandani, Rustomjee, K Raheja, Vijay Sales and Nilkamal."],
       ["You stay in control", "Warm leads are never answered without you."],
     ],
@@ -101,7 +101,7 @@ export const agentPages = [
       ["How soon does it start?", "Week 1 is setup. Outreach goes live in week 2."],
       ["Do I need LinkedIn Premium?", "We set up and run Premium on your account as part of the service."],
     ],
-    whoWeAre: "Clara AI is a 14-person AI team at SNB Future Drive Pvt Ltd. We use this agent ourselves.",
+    whoWeAre: "Clara AI is an AI implementation company, part of SNB Future Drive Pvt Ltd. We use this agent ourselves.",
   },
   {
     landing: true,
@@ -122,7 +122,7 @@ export const agentPages = [
     whyHeadline: "Why Clara AI: we run this exact agent on claraai.tech",
     why: [
       ["Proof from our own Google Analytics", "The numbers on this page are from our site, not a mock-up."],
-      ["Built and run by a 14-person AI team", "Trusted by 19 clients, including Hiranandani, Rustomjee, K Raheja, Vijay Sales and Nilkamal."],
+      ["Built and run by Clara AI", "Trusted by 19 clients, including Hiranandani, Rustomjee, K Raheja, Vijay Sales and Nilkamal."],
       ["Ready for AI search too", "Posts give clear answers that ChatGPT, Gemini and Perplexity can quote."],
     ],
     faqHeadline: "Your questions, answered",
@@ -183,6 +183,6 @@ export const agentPages = [
       ["Do I approve what gets posted?", "You approve the topic plan and image style before posts start."],
       ["Will posts sound like AI spam?", "Each post is checked by our team and answers a real question your buyers search for."],
     ],
-    whoWeAre: "Clara AI is a 14-person AI team at SNB Future Drive Pvt Ltd. We run this agent on our own site.",
+    whoWeAre: "Clara AI is an AI implementation company, part of SNB Future Drive Pvt Ltd. We run this agent on our own site.",
   },
 ];

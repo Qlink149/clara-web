@@ -363,8 +363,8 @@ export default function App() {
                 ))}
               </ul>
             </div>
-            <div className="mt-16 grid grid-cols-2 gap-6 border-t border-white/15 pt-8 md:grid-cols-4">
-              {[["60–70%", "less manual workflow time"], ["5–12%", "sales uplift"], ["19", "clients"], ["14", "people on the AI team"]].map(([n, l]) => (
+            <div className="mt-16 grid grid-cols-2 gap-6 border-t border-white/15 pt-8 md:grid-cols-3">
+              {[["60–70%", "less manual workflow time"], ["5–12%", "sales uplift"], ["19", "clients"]].map(([n, l]) => (
                 <div key={l}><div className="stat">{n}</div><div className="mt-2 text-sm text-white/65">{l}</div></div>
               ))}
             </div>

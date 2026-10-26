@@ -79,7 +79,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div className="max-w-md">
             <img src="/brand/wordmark-white.svg" alt="Clara AI" width="125" height="40" loading="lazy" className="h-9 w-auto" />
-            <p className="mt-4 text-white/65">A 14-person AI team building AI virtual employees, calling agents, chatbots, dashboards and custom agents around your workflow. Trusted by 19 clients.</p>
+            <p className="mt-4 text-white/65">An AI implementation team building AI virtual employees, calling agents, chatbots, dashboards and custom agents around your workflow. Trusted by 19 clients.</p>
           </div>
           <WaButton variant="light">Book a free demo</WaButton>
         </div>
