@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { waLink, useWhatsAppLink } from "@/lib/whatsapp";
 import "@/App.css";
 
 const fadeUp = {
@@ -27,8 +28,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export const whatsappLink =
-  "https://wa.me/918696979791?text=Hello%2C%0AI%20am%20ready%20to%20implement%20AI%20in%20my%20business!";
+export const whatsappLink = waLink();
 
 const caseStudies = [
   {
@@ -230,9 +230,10 @@ export const meshBackground = "https://customer-assets.emergentagent.com/job_cla
 export const whiteLogo = "https://customer-assets.emergentagent.com/job_clara-platform/artifacts/afgl66uy_White%20Full%20Logo.png";
 
 export function StrategyButton({ className = "", size = "default", children = "Book a free demo" }) {
+  const href = useWhatsAppLink();
   return (
     <a
-      href={whatsappLink}
+      href={href}
       target="_blank"
       rel="noreferrer"
       className={`inline-flex min-w-0 max-w-full ${className.includes("w-full") ? "w-full" : ""}`}
@@ -315,6 +316,12 @@ export default function App() {
             <a href="/blog/" className="transition hover:text-white">
               Blog
             </a>
+            <a href="/ai-linkedin-outreach-agent" className="transition hover:text-white">
+              LinkedIn Agent
+            </a>
+            <a href="/ai-seo-agent" className="transition hover:text-white">
+              SEO Agent
+            </a>
             <a href="#contact" className="transition hover:text-white">
               Contact
             </a>
@@ -348,6 +355,12 @@ export default function App() {
               </a>
               <a href="/blog/" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Blog
+              </a>
+              <a href="/ai-linkedin-outreach-agent" className="text-white/70 hover:text-white transition">
+                LinkedIn Agent
+              </a>
+              <a href="/ai-seo-agent" className="text-white/70 hover:text-white transition">
+                SEO Agent
               </a>
               <a href="#contact" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Contact
@@ -896,6 +909,8 @@ export default function App() {
             <a href="/ai-calling-agents" className="transition hover:text-white">AI Calling Agents</a>
             <a href="/ai-dashboards" className="transition hover:text-white">AI Dashboards</a>
             <a href="/custom-ai-agents" className="transition hover:text-white">Custom AI Agents</a>
+            <a href="/ai-linkedin-outreach-agent" className="transition hover:text-white">AI LinkedIn Outreach Agent</a>
+            <a href="/ai-seo-agent" className="transition hover:text-white">AI SEO Agent</a>
             <a href="/blog/" className="transition hover:text-white">Blog</a>
           </nav>
           <div className="flex items-center gap-6">

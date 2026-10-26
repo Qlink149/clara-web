@@ -1,12 +1,12 @@
 import React from "react";
 
-export const salesWhatsappLink =
-  "https://wa.me/919549549339?text=Hello%2C%0AI%20am%20ready%20to%20implement%20AI%20in%20my%20business!";
+import { useWhatsAppLink } from "@/lib/whatsapp";
 
 export default function WhatsAppFloat() {
+  const href = useWhatsAppLink();
   return (
     <a
-      href={salesWhatsappLink}
+      href={href}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Clara AI on WhatsApp"

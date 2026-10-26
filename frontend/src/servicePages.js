@@ -1,3 +1,4 @@
+import { agentPages } from "./agentPages";
 // Content for the service pages. Rendered by ServicePage.js and prerendered at build time.
 const BLOG = "https://www.claraai.tech/blog/";
 
@@ -147,6 +148,7 @@ export const servicePages = [
       ["AI Chatbot for Hospital Appointment Booking in the Gulf", BLOG + "ai-chatbot-for-hospital-appointment-booking/"],
     ],
   },
+  ...agentPages,
 ];
 
 export const findServicePage = (pathname) => {
