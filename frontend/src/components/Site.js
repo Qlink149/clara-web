@@ -200,3 +200,29 @@ export function Scrub({ text, className = "" }) {
     </p>
   );
 }
+
+// Slow auto-advance for a horizontal scroller; pauses on hover, touch, focus, an open card or lightbox; off under reduced motion.
+export function useAutoScroll(ref) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    let paused = false, resumeAt = 0, raf = 0, last = 0, acc = 0;
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; resumeAt = performance.now() + 2500; };
+    const step = (t) => {
+      const dt = last ? t - last : 0; last = t;
+      const open = el.querySelector("details[open]") || document.querySelector(".lightbox");
+      if (!paused && !open && t > resumeAt && document.visibilityState === "visible") {
+        acc += dt * 0.03;
+        if (acc >= 1) { const n = Math.floor(acc); acc -= n;
+          if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) { el.scrollLeft = 0; resumeAt = t + 1500; }
+          else el.scrollLeft += n; }
+      }
+      raf = requestAnimationFrame(step);
+    };
+    const ev = [["pointerenter", pause], ["pointerleave", resume], ["touchstart", pause], ["touchend", resume], ["focusin", pause], ["focusout", resume]];
+    ev.forEach(([k, f]) => el.addEventListener(k, f, { passive: true }));
+    raf = requestAnimationFrame(step);
+    return () => { cancelAnimationFrame(raf); ev.forEach(([k, f]) => el.removeEventListener(k, f)); };
+  }, [ref]);
+}

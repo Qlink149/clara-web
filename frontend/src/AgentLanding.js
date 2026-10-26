@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { StrategyButton } from "@/App";
 import "@/App.css";
-import { SiteHeader, SiteFooter, Star, useSiteMotion } from "@/components/Site";
+import { SiteHeader, SiteFooter, Star, useSiteMotion, useAutoScroll } from "@/components/Site";
 
 const clients = [
   ["hiranandani", "Hiranandani Parks"], ["rustomjee", "Rustomjee"], ["k-raheja-realty", "K Raheja Realty"], ["vijay-sales", "Vijay Sales"],
@@ -41,6 +41,43 @@ function Shot({ src, caption }) {
       <img src={src} alt={caption} loading="lazy" className="w-full object-contain" />
       <figcaption className="border-t border-[#EFEAFB] px-3 py-2 text-sm text-[#3B3752]">{caption}</figcaption>
     </figure>
+  );
+}
+
+function ProofRow({ items, wide }) {
+  const ref = React.useRef(null);
+  const [open, setOpen] = React.useState(null);
+  useAutoScroll(ref);
+  React.useEffect(() => {
+    if (!open) return undefined;
+    const k = (e) => e.key === "Escape" && setOpen(null);
+    window.addEventListener("keydown", k);
+    return () => window.removeEventListener("keydown", k);
+  }, [open]);
+  return (
+    <>
+      <div ref={ref} className="case-row proof-row mt-6" data-hide-float tabIndex={0} aria-label="Proof screenshots">
+        {items.map((it) => (
+          <figure key={it.src} className={`proof-frame ${wide ? "proof-wide" : ""}`}>
+            <div className="proof-bar" aria-hidden="true"><i /><i /><i /></div>
+            <button type="button" className="proof-img" onClick={() => setOpen(it)} aria-label={`Open larger: ${it.title}`}>
+              <img src={it.src} alt={it.alt} loading="lazy" decoding="async" />
+            </button>
+            <figcaption className="px-4 py-3">
+              <div className="text-sm font-semibold text-[#0C0828]">{it.title}</div>
+              <div className="mt-0.5 text-sm text-[#4A4566]">{it.line}</div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      {open && (
+        <div className="lightbox" role="dialog" aria-modal="true" aria-label={open.title} onClick={() => setOpen(null)}>
+          <button type="button" className="lightbox-x" aria-label="Close" onClick={() => setOpen(null)}>×</button>
+          <img src={open.src} alt={open.alt} onClick={(e) => e.stopPropagation()} />
+          <p className="mt-3 text-center text-sm text-white/80">{open.title}. {open.line}</p>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -115,17 +152,11 @@ export default function AgentLanding({ page }) {
               ))}
             </ul>
           )}
-          <div className={`mt-6 grid gap-4 sm:grid-cols-2 ${page.wideImages ? "" : "lg:grid-cols-3"}`}>
-            {page.moreImages.map(([s, c]) => <Shot key={s} src={s} caption={c} />)}
-          </div>
-          <p className="mt-3 text-sm text-[#5C5775]">{page.imagesNote}</p>
-          {page.clientProof && (
-            <figure className="mx-auto mt-10 max-w-sm">
-              <figcaption className="mb-3 text-center font-bold text-[#2A2545]">{page.clientProof.caption}</figcaption>
-              <img src={page.clientProof.src} alt={page.clientProof.alt} loading="lazy" decoding="async" width="600" height="1110" className="h-auto w-full rounded-2xl border border-[#E2DCF7] shadow-sm" />
-            </figure>
-          )}
         </section>
+        <div className="pb-6">
+          <ProofRow wide={page.wideImages} items={[...page.moreImages, ...(page.clientProof ? [{ src: page.clientProof.src, title: "Sanjeet Ray, business coach", line: "Clara AI client, on WhatsApp.", alt: page.clientProof.alt }] : [])]} />
+          <p className={`${wrap} mt-1 text-sm text-[#5C5775]`}>{page.imagesNote}</p>
+        </div>
 
         {/* Middle CTA */}
         <section className={`${wrap} py-4`}>

@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { waLink, useWhatsAppLink } from "@/lib/whatsapp";
 import "@/App.css";
-import { SiteHeader, SiteFooter, WaButton, Star, LogoGrid, Scrub, CLIENTS, useSiteMotion } from "@/components/Site";
+import { SiteHeader, SiteFooter, WaButton, Star, LogoGrid, Scrub, CLIENTS, useSiteMotion, useAutoScroll } from "@/components/Site";
 
 
 export const whatsappLink = waLink();
@@ -26,28 +26,7 @@ export const whatsappLink = waLink();
 // focus or an open card, and never runs under prefers-reduced-motion.
 function CaseRow({ items }) {
   const ref = React.useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
-    let paused = false, resumeAt = 0, raf = 0, last = 0, acc = 0;
-    const pause = () => { paused = true; };
-    const resume = () => { paused = false; resumeAt = performance.now() + 2500; };
-    const step = (t) => {
-      const dt = last ? t - last : 0; last = t;
-      const open = el.querySelector("details[open]");
-      if (!paused && !open && t > resumeAt && document.visibilityState === "visible") {
-        acc += dt * 0.03;
-        if (acc >= 1) { const n = Math.floor(acc); acc -= n;
-          if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) { el.scrollLeft = 0; resumeAt = t + 1500; }
-          else el.scrollLeft += n; }
-      }
-      raf = requestAnimationFrame(step);
-    };
-    const ev = [["pointerenter", pause], ["pointerleave", resume], ["touchstart", pause], ["touchend", resume], ["focusin", pause], ["focusout", resume]];
-    ev.forEach(([k, f]) => el.addEventListener(k, f, { passive: true }));
-    raf = requestAnimationFrame(step);
-    return () => { cancelAnimationFrame(raf); ev.forEach(([k, f]) => el.removeEventListener(k, f)); };
-  }, []);
+  useAutoScroll(ref);
   return (
     <div ref={ref} className="case-row mt-10" data-hide-float tabIndex={0} aria-label="Client case studies">
       {items.map((c) => (
