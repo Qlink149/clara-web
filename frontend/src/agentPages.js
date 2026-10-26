@@ -28,6 +28,11 @@ export const agentPages = [
     ],
     faqHeadline: "Your questions, answered",
     path: "/ai-linkedin-outreach-agent",
+    clientProof: {
+      src: "/proof/li/sanjeet-whatsapp.webp",
+      caption: "Sanjeet Ray, business coach and Clara AI client, on WhatsApp",
+      alt: "WhatsApp group screenshot: Sanjeet Ray Coach replies \"Thanks, this was super cool\" and \"I got a WhatsApp from the agent\". Other participants are blurred.",
+    },
     name: "AI LinkedIn Outreach Agent",
     title: "AI LinkedIn Outreach Agent: Replies Sent to WhatsApp | Clara AI",
     description:

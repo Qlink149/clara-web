@@ -18,7 +18,7 @@ export default function ServicePage({ page }) {
 
       <header className="sticky top-0 z-40 border-b border-white/8 bg-[#070312]/70 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-10">
-          <a href="/" aria-label="Clara AI home"><img src={whiteLogo} alt="Clara AI" className="h-7 w-auto max-w-[140px] object-contain md:h-8" /></a>
+          <a href="/" aria-label="Clara AI home" className="inline-flex min-h-[44px] items-center"><img src={whiteLogo} alt="Clara AI" className="h-7 w-auto max-w-[140px] object-contain md:h-8" /></a>
           <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
             <a href="/#solutions" className="transition hover:text-white">Solutions</a>
             <a href="/#case-studies" className="transition hover:text-white">Case studies</a>
@@ -124,7 +124,7 @@ export default function ServicePage({ page }) {
           <h2 className="mt-10 text-2xl font-medium tracking-[-0.03em]">Other Clara AI services</h2>
           <ul className="mt-4 flex flex-wrap gap-3">
             {others.map((o) => (
-              <li key={o.path}><a href={o.path} className="inline-block rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/70 hover:text-white">{o.name}</a></li>
+              <li key={o.path}><a href={o.path} className="inline-block rounded-full border border-white/10 bg-white/[0.04] inline-flex min-h-[44px] items-center px-4 py-2 text-sm text-white/70 hover:text-white">{o.name}</a></li>
             ))}
           </ul>
         </section>
@@ -134,8 +134,8 @@ export default function ServicePage({ page }) {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
           <img src={whiteLogo} alt="Clara AI" className="h-6 w-auto max-w-[120px] object-contain" />
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Services">
-            {servicePages.map((o) => (<a key={o.path} href={o.path} className="transition hover:text-white">{o.name}</a>))}
-            <a href="/blog/" className="transition hover:text-white">Blog</a>
+            {servicePages.map((o) => (<a key={o.path} href={o.path} className="inline-flex min-h-[44px] items-center transition hover:text-white">{o.name}</a>))}
+            <a href="/blog/" className="inline-flex min-h-[44px] items-center transition hover:text-white">Blog</a>
           </nav>
         </div>
       </footer>

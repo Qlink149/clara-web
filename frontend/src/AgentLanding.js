@@ -3,7 +3,12 @@ import { ArrowRight, Check } from "lucide-react";
 import { StrategyButton, whiteLogo } from "@/App";
 import "@/App.css";
 
-const clients = ["Hiranandani", "Rustomjee", "K Raheja", "Vijay Sales", "Nilkamal", "Apex Hospitals", "Wonder Cement", "iDAC", "KISNA"];
+const clients = [
+  ["hiranandani", "Hiranandani Parks"], ["rustomjee", "Rustomjee"], ["k-raheja-realty", "K Raheja Realty"], ["vijay-sales", "Vijay Sales"],
+  ["nilkamal", "Nilkamal"], ["apex-hospitals", "Apex Hospitals"], ["wonder-cement", "Wonder Cement"], ["idac", "iDAC"], ["kisna", "KISNA"],
+  ["the-hindu", "The Hindu"], ["haique", "Haique"], ["edme", "edme"], ["kohinoor", "Kohinoor"], ["dp-jewellers", "D.P. Jewellers"],
+  ["ergode", "Ergode"], ["arihant", "Arihant"],
+];
 const wrap = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
 const btn = "rounded-full bg-[#5A35C8] px-7 text-white hover:bg-[#4A2BB0]";
 const h2 = "text-2xl font-bold tracking-tight text-[#14112A] sm:text-3xl";
@@ -43,7 +48,7 @@ export default function AgentLanding({ page }) {
     <div className="min-h-screen w-full bg-[#FAF8FF] text-[#14112A]" data-testid="agent-landing">
       <header className="sticky top-0 z-40 border-b border-[#ECE7FA] bg-white/90 backdrop-blur">
         <div className={`${wrap} flex items-center justify-between gap-3 py-3`}>
-          <a href="/" aria-label="Clara AI home">
+          <a href="/" aria-label="Clara AI home" className="inline-flex min-h-[44px] items-center">
             <img src={whiteLogo} alt="Clara AI" className="h-7 w-auto max-w-[130px] object-contain brightness-0" />
           </a>
           <Cta size="sm" />
@@ -73,11 +78,15 @@ export default function AgentLanding({ page }) {
 
         {/* Second proof form above/at the fold: trusted-by strip (approved public names) */}
         <section className="border-y border-[#ECE7FA] bg-white py-5">
-          <div className={`${wrap} flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left`}>
+          <div className={`${wrap} text-center`}>
             <div className="text-sm font-semibold text-[#3B3752]">14-person AI team. Trusted by 19 clients, including</div>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-base font-bold text-[#5C5775]">
-              {clients.map((c) => <span key={c}>{c}</span>)}
-            </div>
+            <ul className="mt-4 grid grid-cols-3 items-center gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-8">
+              {clients.map(([f, n]) => (
+                <li key={f} className="flex h-12 items-center justify-center">
+                  <img src={`/logos/${f}.webp`} alt={`${n} logo`} loading="lazy" decoding="async" width="120" height="48" className="max-h-10 w-auto max-w-[110px] object-contain" />
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
@@ -111,7 +120,12 @@ export default function AgentLanding({ page }) {
             {page.moreImages.map(([s, c]) => <Shot key={s} src={s} caption={c} />)}
           </div>
           <p className="mt-3 text-sm text-[#5C5775]">{page.imagesNote}</p>
-          {/* PLACEHOLDER: named client testimonial (name, role, photo, source) goes here once a real, approved quote exists. Do not invent one. */}
+          {page.clientProof && (
+            <figure className="mx-auto mt-10 max-w-sm">
+              <figcaption className="mb-3 text-center font-bold text-[#2A2545]">{page.clientProof.caption}</figcaption>
+              <img src={page.clientProof.src} alt={page.clientProof.alt} loading="lazy" decoding="async" width="600" height="1110" className="h-auto w-full rounded-2xl border border-[#E6E0F7] shadow-sm" />
+            </figure>
+          )}
         </section>
 
         {/* Middle CTA */}
@@ -193,10 +207,10 @@ export default function AgentLanding({ page }) {
 
       <footer className="border-t border-[#ECE7FA] bg-white py-6 text-sm text-[#5C5775]">
         <div className={`${wrap} flex flex-wrap gap-x-6 gap-y-2`}>
-          <a href="/" className="hover:text-[#5A35C8]">Clara AI home</a>
-          <a href="/ai-linkedin-outreach-agent" className="hover:text-[#5A35C8]">AI LinkedIn Outreach Agent</a>
-          <a href="/ai-seo-agent" className="hover:text-[#5A35C8]">AI SEO Agent</a>
-          <a href="/blog/" className="hover:text-[#5A35C8]">Blog</a>
+          <a href="/" className="inline-flex min-h-[44px] items-center hover:text-[#5A35C8]">Clara AI home</a>
+          <a href="/ai-linkedin-outreach-agent" className="inline-flex min-h-[44px] items-center hover:text-[#5A35C8]">AI LinkedIn Outreach Agent</a>
+          <a href="/ai-seo-agent" className="inline-flex min-h-[44px] items-center hover:text-[#5A35C8]">AI SEO Agent</a>
+          <a href="/blog/" className="inline-flex min-h-[44px] items-center hover:text-[#5A35C8]">Blog</a>
           <span>© Clara AI</span>
         </div>
       </footer>

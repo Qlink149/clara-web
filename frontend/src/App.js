@@ -109,17 +109,6 @@ const caseStudies = [
       "Settlement moved from 15–20 days to real time. Leadership now sees every store live and gets always-on executive recommendations instead of a stack of reports.",
   },
   {
-    title: "Aditya Birla Sun Life",
-    subtitle: "Channel Partner Tracking",
-    tag: "Custom Solutions",
-    challenge:
-      "Dormant channel partners were hard to reactivate because engagement and performance data were not consolidated in real time.",
-    solution:
-      "We built a dashboard and backend that tracks every partner’s last interaction with the company and their manager, alongside dealer incentive earnings.",
-    result:
-      "Managers now have full context for personalised outreach — for example spotting a training gap and unused incentive, then reactivating a partner with tailored support instead of a generic sales call.",
-  },
-  {
     title: "Rustomjee",
     subtitle: "Personalized Lead Activation",
     tag: "Custom Solutions",
@@ -129,17 +118,6 @@ const caseStudies = [
       "We created virtual customer profiles that track past interactions and compare them against current projects, then used that intelligence to power personalised AI-driven calls.",
     result:
       "Dormant prospects are reactivated with specific context — for example a buyer inactive for 18 months who wanted a 3 BHK near a good international school was called about a new project launching next to a Global High School campus.",
-  },
-  {
-    title: "Zelenkofske Axelrod LLC",
-    subtitle: "Practice Management Dashboard",
-    tag: "Custom Solutions",
-    challenge:
-      "ZA ran audit engagements across 5+ disconnected tools — spreadsheets, email, and shared drives — with no real-time visibility. Monthly WIP reconciliation took 3–5 days, invoices were fully manual, and payment health was judged on gut feel.",
-    solution:
-      "We built a unified AI practice-management dashboard covering engagements, PBC tracking, WIP and billing, time entry, and a client portal — plus a Payment Health Scoring Engine (0–100), ClaraGPT document analysis, and auto-generated invoice PDFs.",
-    result:
-      "WIP reconciliation went from 3–5 days to real time. Invoice generation dropped from 30 minutes to under 30 seconds. Five tools became one platform with role-based access and a self-service client portal with Stripe payments.",
   },
   {
     title: "KISNA Diamond & Gold Jewellery",
@@ -239,7 +217,7 @@ export function StrategyButton({ className = "", size = "default", children = "B
       className={`inline-flex min-w-0 max-w-full ${className.includes("w-full") ? "w-full" : ""}`}
       data-testid="strategy-button-link"
     >
-      <Button size={size} className={`max-w-full ${className}`} data-testid="strategy-button">
+      <Button size={size} className={`min-h-[44px] max-w-full ${className}`} data-testid="strategy-button">
         {children}
       </Button>
     </a>
@@ -250,7 +228,7 @@ export function StrategyButton({ className = "", size = "default", children = "B
 export function ClaraLogo() {
   return (
     <div className="relative flex items-center" data-testid="clara-logo">
-      <img src={whiteLogo} alt="Clara.ai" className="h-7 w-auto max-w-[140px] object-contain md:h-8" />
+      <img src={whiteLogo} alt="Clara AI" className="h-7 w-auto max-w-[140px] object-contain md:h-8" />
     </div>
   );
 }
@@ -332,7 +310,9 @@ export default function App() {
           </div>
 
           <button
-            className="rounded-full border border-white/10 p-2 text-white/70 md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/70 md:hidden"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             data-testid="mobile-menu-button"
           >
@@ -343,26 +323,26 @@ export default function App() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-white/8 bg-[#070312]/95 backdrop-blur-xl" data-testid="mobile-menu">
-            <nav className="flex flex-col gap-4 px-4 py-4 sm:px-6">
-              <a href="#about" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
+            <nav className="flex flex-col gap-1 px-4 py-4 sm:px-6">
+              <a href="#about" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Why Clara
               </a>
-              <a href="#solutions" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#solutions" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Solutions
               </a>
-              <a href="#case-studies" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#case-studies" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Case Studies
               </a>
-              <a href="/blog/" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
+              <a href="/blog/" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Blog
               </a>
-              <a href="/ai-linkedin-outreach-agent" className="text-white/70 hover:text-white transition">
+              <a href="/ai-linkedin-outreach-agent" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition">
                 LinkedIn Agent
               </a>
-              <a href="/ai-seo-agent" className="text-white/70 hover:text-white transition">
+              <a href="/ai-seo-agent" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition">
                 SEO Agent
               </a>
-              <a href="#contact" className="text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
+              <a href="#contact" className="flex min-h-[44px] items-center text-white/70 hover:text-white transition" onClick={() => setMobileMenuOpen(false)}>
                 Contact
               </a>
               <StrategyButton className="rounded-full bg-white text-[#0A0618] hover:bg-white/90 w-full mt-2" />
@@ -382,7 +362,7 @@ export default function App() {
               transition={{ duration: 0.7 }}
               className="min-w-0 max-w-3xl"
             >
-              <div className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-white/65 sm:px-4 sm:text-xs sm:tracking-[0.22em]">
+              <div className="mb-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.12em] text-white/65 sm:px-4 sm:text-xs sm:tracking-[0.22em]">
                 <Sparkles className="h-3.5 w-3.5 shrink-0" />
                 Trusted by enterprise teams across industries
               </div>
@@ -404,7 +384,7 @@ export default function App() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
+                    className="min-h-[44px] w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                     data-testid="view-case-studies-button"
                   >
                     View case studies
@@ -443,7 +423,7 @@ export default function App() {
               <div className="relative min-w-0 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-4 shadow-2xl shadow-black/30 backdrop-blur-xl sm:rounded-[2rem] sm:p-5">
                 <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-[#120B27]/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0">
-                    <div className="text-sm text-white/45">Clara.ai</div>
+                    <div className="text-sm text-white/45">Clara AI</div>
                     <div className="text-base font-medium text-white sm:text-lg">
                       Your AI partner for businesses
                     </div>
@@ -543,7 +523,7 @@ export default function App() {
           >
             <div>
               <div className="text-sm uppercase tracking-[0.26em] text-white/40">
-                Why Clara.ai
+                Why Clara AI
               </div>
               <h2 className="mt-5 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 We solve business problems first. AI comes after.
@@ -717,7 +697,7 @@ export default function App() {
                     data-testid="case-study-card"
                   >
                     <CardContent className="flex h-full min-w-0 flex-col p-5 sm:p-7">
-                      <div className="w-fit max-w-full rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[10px] uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.2em]">
+                      <div className="w-fit max-w-full rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs uppercase tracking-[0.14em] text-white/55 sm:text-xs sm:tracking-[0.2em]">
                         {study.tag}
                       </div>
                       <div className="mt-6 text-2xl font-medium tracking-[-0.03em] sm:text-3xl">
@@ -732,7 +712,7 @@ export default function App() {
                           ["03", "Result", study.result],
                         ].map(([num, label, text]) => (
                           <div key={label} className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-white/40 sm:text-xs sm:tracking-[0.2em]">
+                            <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/40 sm:text-xs sm:tracking-[0.2em]">
                               <span className="text-violet-200/80">{num}</span>
                               {label}
                             </div>
@@ -851,7 +831,7 @@ export default function App() {
               </h3>
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/60">
                 Whether you need a single automation, a new dashboard, or a full AI
-                rollout across teams, Clara.ai can step in as your implementation partner.
+                rollout across teams, Clara AI can step in as your implementation partner.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <StrategyButton
@@ -862,7 +842,7 @@ export default function App() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
+                    className="min-h-[44px] w-full rounded-full border-white/14 bg-white/5 px-7 text-white hover:bg-white/10 hover:text-white sm:w-auto"
                     data-testid="see-solutions-button"
                   >
                     See solutions
@@ -878,7 +858,7 @@ export default function App() {
               <div className="mt-6 space-y-4 text-sm text-white/70">
                 <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4">
                   <div className="text-white/45">Company</div>
-                  <div className="mt-1 text-base text-white">Clara.ai</div>
+                  <div className="mt-1 text-base text-white">Clara AI</div>
                 </div>
                 <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-4">
                   <div className="text-white/45">Positioning</div>
@@ -902,16 +882,16 @@ export default function App() {
       <footer className="border-t border-white/8 px-4 py-8 sm:px-6 lg:px-10" data-testid="footer">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-white/40 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
-            <img src={whiteLogo} alt="Clara.ai" className="h-6 w-auto max-w-[120px] object-contain" />
+            <img src={whiteLogo} alt="Clara AI" className="h-6 w-auto max-w-[120px] object-contain" />
           </div>
           <nav className="flex flex-wrap items-center gap-x-5 gap-y-2" aria-label="Services" data-testid="footer-services">
-            <a href="/ai-chatbots" className="transition hover:text-white">AI Chatbots</a>
-            <a href="/ai-calling-agents" className="transition hover:text-white">AI Calling Agents</a>
-            <a href="/ai-dashboards" className="transition hover:text-white">AI Dashboards</a>
-            <a href="/custom-ai-agents" className="transition hover:text-white">Custom AI Agents</a>
-            <a href="/ai-linkedin-outreach-agent" className="transition hover:text-white">AI LinkedIn Outreach Agent</a>
-            <a href="/ai-seo-agent" className="transition hover:text-white">AI SEO Agent</a>
-            <a href="/blog/" className="transition hover:text-white">Blog</a>
+            <a href="/ai-chatbots" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI Chatbots</a>
+            <a href="/ai-calling-agents" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI Calling Agents</a>
+            <a href="/ai-dashboards" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI Dashboards</a>
+            <a href="/custom-ai-agents" className="inline-flex min-h-[44px] items-center transition hover:text-white">Custom AI Agents</a>
+            <a href="/ai-linkedin-outreach-agent" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI LinkedIn Outreach Agent</a>
+            <a href="/ai-seo-agent" className="inline-flex min-h-[44px] items-center transition hover:text-white">AI SEO Agent</a>
+            <a href="/blog/" className="inline-flex min-h-[44px] items-center transition hover:text-white">Blog</a>
           </nav>
           <div className="flex items-center gap-6">
             <span>AI implementation partner for businesses</span>
