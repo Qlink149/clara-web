@@ -13,7 +13,7 @@ export default function WhatsAppFloat() {
       entries.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
       setHidden(seen.size > 0);
     }, { rootMargin: "-55% 0px 0px 0px" });
-    document.querySelectorAll('[data-testid="strategy-button-link"]').forEach((el) => io.observe(el));
+    document.querySelectorAll('[data-testid="strategy-button-link"], [data-hide-float]').forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
   return (

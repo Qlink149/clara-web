@@ -73,3 +73,8 @@ html.js .rv:not(.in){opacity:0;transform:translateY(22px)}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none}.caret,.menu-card{animation:none}.dot-cursor{display:none}.scrub span{color:var(--ink)!important}.btn{transition:none}}
 
 @media(max-width:768px){.hero-sub{display:none}}
+.case-row{display:flex;gap:16px;overflow-x:auto;padding:4px max(20px,calc((100vw - 1200px)/2)) 24px;scrollbar-width:thin;align-items:flex-start;-webkit-overflow-scrolling:touch}
+.case-card{flex:0 0 min(84vw,340px);display:flex;flex-direction:column}
+.case-card summary::-webkit-details-marker{display:none}
+.case-card summary{list-style:none}
+@media(max-width:768px){.case-row{padding-bottom:88px}}

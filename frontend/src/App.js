@@ -5,6 +5,7 @@ import {
   MessageSquare,
   LayoutDashboard,
   Workflow,
+  Bot,
   ShieldCheck,
   Factory,
   ShoppingBag,
@@ -21,6 +22,53 @@ import { SiteHeader, SiteFooter, WaButton, Star, LogoGrid, Scrub, CLIENTS, useSi
 
 export const whatsappLink = waLink();
 
+// Horizontal case-study row: native swipe/scroll, slow auto-advance that pauses on hover, touch,
+// focus or an open card, and never runs under prefers-reduced-motion.
+function CaseRow({ items }) {
+  const ref = React.useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+    let paused = false, resumeAt = 0, raf = 0, last = 0, acc = 0;
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; resumeAt = performance.now() + 2500; };
+    const step = (t) => {
+      const dt = last ? t - last : 0; last = t;
+      const open = el.querySelector("details[open]");
+      if (!paused && !open && t > resumeAt && document.visibilityState === "visible") {
+        acc += dt * 0.03;
+        if (acc >= 1) { const n = Math.floor(acc); acc -= n;
+          if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) { el.scrollLeft = 0; resumeAt = t + 1500; }
+          else el.scrollLeft += n; }
+      }
+      raf = requestAnimationFrame(step);
+    };
+    const ev = [["pointerenter", pause], ["pointerleave", resume], ["touchstart", pause], ["touchend", resume], ["focusin", pause], ["focusout", resume]];
+    ev.forEach(([k, f]) => el.addEventListener(k, f, { passive: true }));
+    raf = requestAnimationFrame(step);
+    return () => { cancelAnimationFrame(raf); ev.forEach(([k, f]) => el.removeEventListener(k, f)); };
+  }, []);
+  return (
+    <div ref={ref} className="case-row mt-10" data-hide-float tabIndex={0} aria-label="Client case studies">
+      {items.map((c) => (
+        <article key={c.title + c.subtitle} className="card case-card">
+          <div className="inline-flex self-start rounded-full bg-[#E9E5FF] px-3 py-1 text-xs font-semibold text-[#5D27CA]">{c.tag}</div>
+          <h3 className="mt-3 text-xl font-semibold">{c.title}</h3>
+          <div className="text-sm text-[#4A4566]">{c.subtitle}</div>
+          <p className="mt-4 text-[15px] leading-6 text-[#4A4566]">{c.built}</p>
+          <p className="mt-2 text-[15px] font-semibold leading-6 text-[#0C0828]">{c.win}</p>
+          <details className="mt-4">
+            <summary className="inline-flex min-h-[44px] cursor-pointer items-center font-semibold text-[#5D27CA]">Read more</summary>
+            <p className="mt-2 text-sm leading-6 text-[#4A4566]"><strong className="text-[#0C0828]">Challenge: </strong>{c.challenge}</p>
+            <p className="mt-2 text-sm leading-6 text-[#4A4566]"><strong className="text-[#0C0828]">What we built: </strong>{c.solution}</p>
+            <p className="mt-2 text-sm leading-6 text-[#0C0828]"><strong>Result: </strong>{c.result}</p>
+          </details>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 const caseStudies = [
   {
     title: "KISNA Diamond & Gold Jewellery",
@@ -30,6 +78,8 @@ const caseStudies = [
       "KISNA needed to handle high volumes of customer queries across pre-order, post-order, and support — product availability, pricing, order tracking, returns, and complaint escalation — while keeping a premium brand experience. The support team was stretched thin, with no unified system for tickets, conversation history, or CRM integration.",
     solution:
       "We built KIA, an AI WhatsApp concierge for the full customer lifecycle — product discovery and recommendations, order tracking, returns, and complaint resolution. The bot auto-generates tickets, keeps conversation history, tags issues, and escalates to a human when needed, synced live with their CRM and helpdesk.",
+    built: "AI WhatsApp concierge for product, order and support queries.",
+    win: "Instant answers on WhatsApp, with human handoff for complex issues.",
     result:
       "Customers get instant answers on product info, order status, and support on WhatsApp, any time they message. Automated ticketing and logs give the team full visibility, and human handoff means complex issues are never dropped.",
   },
@@ -41,6 +91,8 @@ const caseStudies = [
       "An architectural brand wanted a digital extension of their in-store experience — a way for customers to discover furnishing, home accessories, and décor from multiple brands online. Product discovery, comparison, and purchase were split across websites, calls, and store visits.",
     solution:
       "We built a WhatsApp virtual concierge that takes customers from discovery and cross-brand comparison through to Razorpay checkout in a single chat. A dashboard lets the client manage brands, products, and services in real time, and the bot remembers context across conversations.",
+    built: "WhatsApp concierge from discovery to Razorpay checkout.",
+    win: "Discovery, comparison and purchase happen in one chat.",
     result:
       "Discovery, comparison, and purchase now happen end-to-end on WhatsApp. The client runs the catalogue from one dashboard, and customers get a personalised concierge that remembers preferences and past interactions.",
   },
@@ -52,6 +104,8 @@ const caseStudies = [
       "Hiranandani needed to reach a pool of around 35,000 homebuyer leads before the festive season, but did not have the manpower for high-volume outreach.",
     solution:
       "We deployed a multilingual AI calling agent fluent in English and Tamil — built to understand buyer intent, speak naturally, and continue the conversation on WhatsApp.",
+    built: "Multilingual AI calling agent in English and Tamil.",
+    win: "6,000+ homebuyers called and 195 qualified leads in 2 days.",
     result:
       "In 2 days the agent called over 6,000 homebuyers and generated 195 qualified leads — fully automated, multilingual, and WhatsApp-supported.",
   },
@@ -63,6 +117,8 @@ const caseStudies = [
       "Complaint-resolution follow-ups were consuming call-centre bandwidth, keeping agents away from sales and new-customer acquisition.",
     solution:
       "We deployed an AI courtesy-calling agent that automatically checks complaint-resolution status with customers, without pulling human agents into every follow-up.",
+    built: "AI courtesy-calling agent for complaint follow-ups.",
+    win: "About 1,867 calls a day, freeing 5+ human agents.",
     result:
       "The agent now handles about 1,867 calls per day, freeing 5+ human agents for revenue-generating work.",
   },
@@ -74,6 +130,8 @@ const caseStudies = [
       "iDAC needed to show up for complex, high-intent conversational queries on AI search engines — not traditional keywords alone.",
     solution:
       "We built a Generative Engine Optimization strategy so the brand ranks on ChatGPT, Gemini, and Perplexity for queries such as “best architecture exhibitions in Mumbai” and “top architecture awards.”",
+    built: "GEO strategy to rank on ChatGPT, Gemini and Perplexity.",
+    win: "16% organic traffic growth and 38% more targeted Mumbai traffic.",
     result:
       "16% overall organic traffic growth, 38% targeted traffic increase from Mumbai, and 100% of referral traffic growth targets hit.",
   },
@@ -85,6 +143,8 @@ const caseStudies = [
       "Ordinary CCTV systems were collecting footage without turning it into usable intelligence for revenue, compliance, or cost control.",
     solution:
       "AVAA turns existing cameras into a live intelligence layer — spotting sales opportunities and customer flow, monitoring SOP and safety compliance, and flagging operational waste.",
+    built: "Turns existing cameras into a live intelligence layer.",
+    win: "Real-time sales, SOP and safety insight from cameras they already had.",
     result:
       "Teams get real-time insight from infrastructure they already have: stronger revenue signals, automatic SOP checks, and lower operating cost.",
   },
@@ -96,6 +156,8 @@ const caseStudies = [
       "Leadership lacked a live view of retail performance, and dealer incentive settlement was a 15–20 day manual process. Sales and customer experience needed automation, not another static report.",
     solution:
       "We built a retail store performance dashboard for sales, footfall, scheme qualification, and store KPIs; a Virtual AI CEO that ingests business data and delivers executive recommendations; and a Dealer Incentive Engine that computes incentives from three uploaded files.",
+    built: "Store dashboard, Virtual AI CEO and dealer incentive engine.",
+    win: "Settlement moved from 15–20 days to real time.",
     result:
       "Settlement moved from 15–20 days to real time. Leadership now sees every store live and gets always-on executive recommendations instead of a stack of reports.",
   },
@@ -107,6 +169,8 @@ const caseStudies = [
       "Re-engaging dormant leads needed highly personalised communication, not generic cold calls.",
     solution:
       "We created virtual customer profiles that track past interactions and compare them against current projects, then used that intelligence to power personalised AI-driven calls.",
+    built: "Virtual customer profiles powering personalised AI calls.",
+    win: "Dormant prospects reactivated with specific, relevant context.",
     result:
       "Dormant prospects are reactivated with specific context — for example a buyer inactive for 18 months who wanted a 3 BHK near a good international school was called about a new project launching next to a Global High School campus.",
   },
@@ -118,6 +182,8 @@ const caseStudies = [
       "Kisna’s sales and support team managed gold-order fulfilment across 25+ vendors with zero real-time visibility. Status tracking was manual — vendors were called every 7 days — so stores could not tell if an order was delayed, in finishing, or ready to dispatch. That created 21-day backlogs and task mismatches across 2,000+ orders.",
     solution:
       "We built a live Sales & Support Dashboard for the full gold-order lifecycle: store order receipt, credit-health checks, vendor assignment, QC, payment confirmation, and dispatch. It includes WhatsApp and email alerts via Kisna’s own number, a vendor portal, a QC Review Bureau with digital checklists, and a 7-day payment reminder engine, with role-based access.",
+    built: "Live sales and support dashboard for gold orders.",
+    win: "2,124 orders across 28 states tracked live on one dashboard.",
     result:
       "2,124 orders across 28 states and 124 customers are now tracked live. INR 17.3 Cr in order value sits on one dashboard. 25+ vendors are moving onto a unified portal, and five disconnected workflows — assignment, vendor coordination, QC, payment, and dispatch — now run as one system.",
   },
@@ -129,6 +195,8 @@ const caseStudies = [
       "Quality checks on patient calls were extremely time-intensive for supervisors, creating bottlenecks in healthcare service delivery.",
     solution:
       "We built a custom AI quality-check agent that listens to calls and scores each interaction consistently out of 10.",
+    built: "AI agent that listens to calls and scores each one out of 10.",
+    win: "Consistent call evaluations and far less supervisor workload.",
     result:
       "Evaluations are now consistent and objective, supervisor workload dropped sharply, and patient-care standards improved.",
   },
@@ -140,6 +208,8 @@ const caseStudies = [
       "Manual reconciliation between ERP and Tally data was slow and error-prone, with weak visibility into why figures did not match.",
     solution:
       "Our AI system reconciles ERP and Tally records using unique identifiers, flags discrepancies instantly, and calculates Net Balance, Permanent Difference, and Value of Receipts. A dashboard shows where differences exist and why.",
+    built: "AI reconciliation of ERP and Tally records.",
+    win: "Faster, more accurate reconciliation with clear audit visibility.",
     result:
       "Reconciliation is faster and more accurate, audit visibility is stronger, and mismatches can be resolved without hunting through spreadsheets.",
   },
@@ -151,12 +221,21 @@ const caseStudies = [
       "The event needed attendance confirmed at massive scale, visitors guided to the right booths, and analytics captured throughout — without stretching human teams.",
     solution:
       "An AI calling agent confirmed attendance, an AI WhatsApp agent guided every visitor to their destination booth, and real-time analytics ran continuously during the event.",
+    built: "AI calling and WhatsApp agents plus live event analytics.",
+    win: "43,000 calls in one day and 100% navigation support.",
     result:
       "43,000 calls in one day, 100% navigation support, and 24/7 event analytics — with record turnout and a complete post-event dataset for the next edition.",
   },
 ];
 
 const solutions = [
+  {
+    icon: Bot,
+    title: "AI Virtual Employees",
+    href: "#contact",
+    id: "ai-virtual-employees",
+    text: "AI employees that work in a browser and use your websites and tools like a person would. Message them a task on WhatsApp and they report back when it is done.",
+  },
   {
     icon: PhoneCall,
     title: "AI Calling Agents",
@@ -316,12 +395,12 @@ export default function App() {
             <span className="eyebrow rv">Solutions</span>
             <h2 className="h-lg mt-4 max-w-3xl rv">What we build for you</h2>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
-              {solutions.map(({ icon: Icon, title, href, text }) => (
-                <a key={href} href={href} className="card group flex flex-col gap-4 transition hover:-translate-y-1 hover:border-[#8D57DE] rv" data-cursor="big">
+              {solutions.map(({ icon: Icon, title, href, text, id }) => (
+                <a key={href} id={id} href={href} className="card group flex flex-col gap-4 transition hover:-translate-y-1 hover:border-[#8D57DE] rv" data-cursor="big">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E9E5FF] text-[#5D27CA]"><Icon className="h-6 w-6" /></span>
                   <h3 className="text-2xl font-semibold">{title}</h3>
                   <p className="card-muted">{text}</p>
-                  <span className="mt-auto inline-flex items-center gap-2 font-semibold text-[#5D27CA]">Learn more <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
+                  <span className="mt-auto inline-flex items-center gap-2 font-semibold text-[#5D27CA]">{href === "#contact" ? "Talk to us" : "Learn more"} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
                 </a>
               ))}
               {[["/ai-linkedin-outreach-agent", "AI LinkedIn Outreach Agent", "Finds your buyers, connects and messages them, and sends every reply to your WhatsApp."], ["/ai-seo-agent", "AI SEO Agent", "Writes and publishes search-ready blog posts for you, checked by our team."]].map(([href, t, d]) => (
@@ -386,19 +465,9 @@ export default function App() {
           <div className="wrap">
             <span className="eyebrow rv">Case studies</span>
             <h2 className="h-lg mt-4 max-w-3xl rv">What we built, and what changed</h2>
-            <div className="mt-10 columns-1 gap-4 md:columns-2 lg:columns-3">
-              {caseStudies.map((c) => (
-                <article key={c.title + c.subtitle} className="card case rv">
-                  <div className="inline-flex rounded-full bg-[#E9E5FF] px-3 py-1 text-xs font-semibold text-[#5D27CA]">{c.tag}</div>
-                  <h3 className="mt-3 text-xl font-semibold">{c.title}</h3>
-                  <div className="text-sm text-[#4A4566]">{c.subtitle}</div>
-                  <p className="mt-3 text-sm leading-6 text-[#4A4566]"><strong className="text-[#0C0828]">Challenge: </strong>{c.challenge}</p>
-                  <p className="mt-2 text-sm leading-6 text-[#4A4566]"><strong className="text-[#0C0828]">What we built: </strong>{c.solution}</p>
-                  <p className="mt-2 text-sm leading-6 text-[#0C0828]"><strong>Result: </strong>{c.result}</p>
-                </article>
-              ))}
-            </div>
+            <p className="mt-3 text-[#4A4566] rv">Swipe or scroll the row. Tap “Read more” for the full story.</p>
           </div>
+          <CaseRow items={caseStudies} />
         </section>
 
         {/* Industries */}

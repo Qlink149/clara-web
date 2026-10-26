@@ -4,6 +4,8 @@ import { useWhatsAppLink } from "@/lib/whatsapp";
 import { servicePages } from "@/servicePages";
 import "@/site.css";
 
+const SVC_ORDER = ["/ai-calling-agents", "/ai-chatbots", "/ai-dashboards", "/custom-ai-agents"];
+
 const NAV = [
   ["Solutions", "/#solutions"],
   ["Case studies", "/#case-studies"],
@@ -77,13 +79,14 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div className="max-w-md">
             <img src="/brand/wordmark-white.svg" alt="Clara AI" width="125" height="40" loading="lazy" className="h-9 w-auto" />
-            <p className="mt-4 text-white/65">A 14-person AI team building calling agents, chatbots, dashboards and custom agents around your workflow. Trusted by 19 clients.</p>
+            <p className="mt-4 text-white/65">A 14-person AI team building AI virtual employees, calling agents, chatbots, dashboards and custom agents around your workflow. Trusted by 19 clients.</p>
           </div>
           <WaButton variant="light">Book a free demo</WaButton>
         </div>
         <nav className="mt-10 flex flex-wrap gap-x-6 gap-y-1 border-t border-white/10 pt-6 text-sm text-white/65" aria-label="Services">
           <a href="/" className="inline-flex min-h-[44px] items-center hover:text-white">Clara AI home</a>
-          {servicePages.map((o) => <a key={o.path} href={o.path} className="inline-flex min-h-[44px] items-center hover:text-white">{o.name}</a>)}
+          <a href="/#ai-virtual-employees" className="inline-flex min-h-[44px] items-center hover:text-white">AI Virtual Employees</a>
+          {[...servicePages].sort((a, b) => SVC_ORDER.indexOf(a.path) - SVC_ORDER.indexOf(b.path)).map((o) => <a key={o.path} href={o.path} className="inline-flex min-h-[44px] items-center hover:text-white">{o.name}</a>)}
           <a href="/blog/" className="inline-flex min-h-[44px] items-center hover:text-white">Blog</a>
         </nav>
         <p className="mt-4 text-sm text-white/45">© {new Date().getFullYear()} Clara AI. SNB Future Drive Pvt Ltd.</p>
