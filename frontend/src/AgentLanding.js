@@ -82,8 +82,8 @@ export default function AgentLanding({ page }) {
             <div className="text-sm font-semibold text-[#3B3752]">14-person AI team. Trusted by 19 clients, including</div>
             <ul className="mt-4 grid grid-cols-3 items-center gap-x-4 gap-y-4 sm:grid-cols-4 lg:grid-cols-8">
               {clients.map(([f, n]) => (
-                <li key={f} className="flex h-12 items-center justify-center">
-                  <img src={`/logos/${f}.webp`} alt={`${n} logo`} loading="lazy" decoding="async" width="120" height="48" className="max-h-10 w-auto max-w-[110px] object-contain" />
+                <li key={f} className="flex h-14 items-center justify-center">
+                  <img src={`/logos/${f}.webp`} alt={`${n} logo`} loading="lazy" decoding="async" width="120" height="48" className="max-h-12 w-auto max-w-[120px] object-contain" />
                 </li>
               ))}
             </ul>

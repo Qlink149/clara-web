@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useWhatsAppLink } from "@/lib/whatsapp";
 
 export default function WhatsAppFloat() {
   const href = useWhatsAppLink();
+  // Hide the float while a page CTA sits in the lower part of the screen, so it never covers a button.
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return undefined;
+    const seen = new Set();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)));
+      setHidden(seen.size > 0);
+    }, { rootMargin: "-55% 0px 0px 0px" });
+    document.querySelectorAll('[data-testid="strategy-button-link"]').forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Clara AI on WhatsApp"
+      aria-hidden={hidden || undefined}
+      tabIndex={hidden ? -1 : 0}
       title="Chat with us on WhatsApp"
       data-testid="whatsapp-float"
       style={{
@@ -17,6 +31,9 @@ export default function WhatsAppFloat() {
         right: "20px",
         bottom: "20px",
         zIndex: 9999,
+        opacity: hidden ? 0 : 1,
+        pointerEvents: hidden ? "none" : "auto",
+        transition: "opacity .2s",
         width: "56px",
         height: "56px",
         borderRadius: "50%",
