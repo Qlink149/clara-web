@@ -109,7 +109,7 @@ const caseStudies = [
       "Settlement moved from 15–20 days to real time. Leadership now sees every store live and gets always-on executive recommendations instead of a stack of reports.",
   },
   {
-    title: "Aditya Birla Sun Life",
+    title: "A leading Indian life insurer",
     subtitle: "Channel Partner Tracking",
     tag: "Custom Solutions",
     challenge:
@@ -131,11 +131,11 @@ const caseStudies = [
       "Dormant prospects are reactivated with specific context — for example a buyer inactive for 18 months who wanted a 3 BHK near a good international school was called about a new project launching next to a Global High School campus.",
   },
   {
-    title: "Zelenkofske Axelrod LLC",
+    title: "A US accounting and advisory firm",
     subtitle: "Practice Management Dashboard",
     tag: "Custom Solutions",
     challenge:
-      "ZA ran audit engagements across 5+ disconnected tools — spreadsheets, email, and shared drives — with no real-time visibility. Monthly WIP reconciliation took 3–5 days, invoices were fully manual, and payment health was judged on gut feel.",
+      "The firm ran audit engagements across 5+ disconnected tools — spreadsheets, email, and shared drives — with no real-time visibility. Monthly WIP reconciliation took 3–5 days, invoices were fully manual, and payment health was judged on gut feel.",
     solution:
       "We built a unified AI practice-management dashboard covering engagements, PBC tracking, WIP and billing, time entry, and a client portal — plus a Payment Health Scoring Engine (0–100), ClaraGPT document analysis, and auto-generated invoice PDFs.",
     result:
