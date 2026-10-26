@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { StrategyButton, whiteLogo } from "@/App";
 import "@/App.css";
 
+const clients = ["Hiranandani", "Rustomjee", "K Raheja", "Vijay Sales", "Nilkamal", "Apex Hospitals", "Wonder Cement", "iDAC", "KISNA"];
 const wrap = "mx-auto max-w-6xl px-4 sm:px-6 lg:px-8";
 const btn = "rounded-full bg-[#5A35C8] px-7 text-white hover:bg-[#4A2BB0]";
 const h2 = "text-2xl font-bold tracking-tight text-[#14112A] sm:text-3xl";
@@ -50,45 +51,67 @@ export default function AgentLanding({ page }) {
       </header>
 
       <main>
-        {/* Hero with proof */}
+        {/* 1. Above the fold: dream-outcome headline, effortless subhead, 2+ proofs, one CTA, FUD reducers, outcome visual */}
         <section className={`${wrap} grid gap-8 py-10 sm:py-14 lg:grid-cols-2 lg:items-center`}>
           <div>
             <div className="text-sm font-semibold uppercase tracking-wider text-[#5A35C8]">{page.eyebrow}</div>
-            <h1 className="mt-3 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">{page.headline}</h1>
-            <p className="mt-4 text-lg leading-8 text-[#3B3752]">{page.subhead}</p>
-            <div className="mt-6"><Cta full /></div>
+            <h1 className="mt-3 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">{page.fold.headline}</h1>
+            <p className="mt-4 text-lg leading-8 text-[#4A4566]">{page.fold.subhead}</p>
+            <div className="mt-7"><Cta full /></div>
+            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-[#2A2545]" data-testid="fud">
+              {page.fold.fud.map((f) => (
+                <li key={f} className="flex items-center gap-1.5"><Check className="h-4 w-4 text-[#1E9E5A]" />{f}</li>
+              ))}
+            </ul>
             <div className="mt-8 text-sm font-medium text-[#3B3752]">{page.heroStatsLabel}</div>
             <div className="mt-3"><Stats items={page.heroStats} /></div>
           </div>
-          <div className={`grid gap-4 ${page.heroImages.length > 1 ? "sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2" : ""}`}>
+          <div className="grid gap-4">
             {page.heroImages.map(([s, c]) => <Shot key={s} src={s} caption={c} />)}
           </div>
         </section>
 
-        <section className={`${wrap} pb-4`}>
-          <p className="rounded-2xl bg-[#F0EBFF] p-5 text-base leading-7 text-[#2A2545] sm:text-lg">{page.angle}</p>
+        {/* Second proof form above/at the fold: trusted-by strip (approved public names) */}
+        <section className="border-y border-[#ECE7FA] bg-white py-5">
+          <div className={`${wrap} flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left`}>
+            <div className="text-sm font-semibold text-[#3B3752]">14-person AI team. Trusted by 19 clients, including</div>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-base font-bold text-[#5C5775]">
+              {clients.map((c) => <span key={c}>{c}</span>)}
+            </div>
+          </div>
         </section>
 
-        {/* More results */}
-        <section className={`${wrap} py-10`}>
-          <h2 className={h2}>More results</h2>
+        {/* 2. Emotion: problem, agitate, solve */}
+        <section className={`${wrap} py-12`}>
+          <h2 className={h2}>{page.pain.headline}</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-[#E6E0F7] bg-white p-5"><div className="font-bold">The problem</div><p className="mt-2 text-[#3B3752]">{page.pain.problem}</p></div>
+            <div className="rounded-2xl border border-[#F3D9D9] bg-[#FFF7F7] p-5"><div className="font-bold">What it costs you</div><p className="mt-2 text-[#3B3752]">{page.pain.agitate}</p></div>
+            <div className="rounded-2xl border border-[#D7CCF7] bg-[#F0EBFF] p-5"><div className="font-bold text-[#5A35C8]">The fix</div><p className="mt-2 text-[#2A2545]">{page.pain.solve}</p></div>
+          </div>
+        </section>
+
+        {/* 3. Wall of proof: stacked, never a carousel */}
+        <section className={`${wrap} py-10`} data-testid="wall-of-proof">
+          <h2 className={h2}>{page.proofHeadline}</h2>
           {page.results.map((r) => (
             <div key={r.name} className="mt-5">
-              <div className="mb-3 font-semibold">{r.name}</div>
+              <div className="mb-3 text-sm font-semibold text-[#3B3752]">{r.name}</div>
               <Stats items={r.stats} />
             </div>
           ))}
           {page.outcomes.length > 0 && (
             <ul className="mt-6 space-y-2">
               {page.outcomes.map((o) => (
-                <li key={o} className="flex gap-2 text-[#2A2545]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#5A35C8]" />{o}</li>
+                <li key={o} className="flex gap-2 font-medium text-[#2A2545]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#5A35C8]" />{o}</li>
               ))}
             </ul>
           )}
-          <div className={`mt-6 grid gap-4 sm:grid-cols-2 ${page.wideImages ? "" : "lg:grid-cols-4"}`}>
+          <div className={`mt-6 grid gap-4 sm:grid-cols-2 ${page.wideImages ? "" : "lg:grid-cols-3"}`}>
             {page.moreImages.map(([s, c]) => <Shot key={s} src={s} caption={c} />)}
           </div>
           <p className="mt-3 text-sm text-[#5C5775]">{page.imagesNote}</p>
+          {/* PLACEHOLDER: named client testimonial (name, role, photo, source) goes here once a real, approved quote exists. Do not invent one. */}
         </section>
 
         {/* Middle CTA */}
@@ -101,8 +124,22 @@ export default function AgentLanding({ page }) {
           </div>
         </section>
 
+        {/* 4. How it works in exactly 3 steps, headline states it */}
         <section className={`${wrap} py-10`}>
-          <h2 className={h2}>What you get</h2>
+          <h2 className={h2}>{page.stepsHeadline}</h2>
+          <ol className="mt-5 grid gap-4 md:grid-cols-3">
+            {page.howItWorks.slice(0, 3).map(([t, d], i) => (
+              <li key={t} className="rounded-2xl border border-[#E6E0F7] bg-white p-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#5A35C8] font-bold text-white">{i + 1}</div>
+                <div className="mt-3 text-lg font-bold">{t}</div>
+                <p className="mt-1 text-[#3B3752]">{d}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className={`${wrap} py-10`}>
+          <h2 className={h2}>{page.getHeadline}</h2>
           <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             {page.whatYouGet.map((w) => (
               <li key={w} className="flex gap-3 rounded-2xl border border-[#E6E0F7] bg-white p-4 text-[#2A2545]">
@@ -112,37 +149,26 @@ export default function AgentLanding({ page }) {
           </ul>
         </section>
 
+        {/* Why us */}
         <section className={`${wrap} py-10`}>
-          <h2 className={h2}>How it works</h2>
-          <ol className="mt-5 grid gap-4 md:grid-cols-3">
-            {page.howItWorks.map(([t, d], i) => (
-              <li key={t} className="rounded-2xl border border-[#E6E0F7] bg-white p-5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#8C63FF] font-bold text-white">{i + 1}</div>
-                <div className="mt-3 text-lg font-semibold">{t}</div>
+          <h2 className={h2}>{page.whyHeadline}</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {page.why.map(([t, d]) => (
+              <div key={t} className="rounded-2xl border border-[#E6E0F7] bg-white p-5">
+                <div className="font-bold">{t}</div>
                 <p className="mt-1 text-[#3B3752]">{d}</p>
-              </li>
+              </div>
             ))}
-          </ol>
+          </div>
         </section>
 
+        {/* Objections, fully exposed (no accordion) */}
         <section className={`${wrap} py-10`}>
-          <h2 className={h2}>How we start</h2>
-          <ol className="mt-5 space-y-3">
-            {page.start.map(([t, d]) => (
-              <li key={t} className="flex flex-col gap-1 rounded-2xl border border-[#E6E0F7] bg-white p-4 sm:flex-row sm:gap-4">
-                <span className="w-36 shrink-0 font-semibold text-[#5A35C8]">{t}</span>
-                <span className="text-[#2A2545]">{d}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className={`${wrap} py-10`}>
-          <h2 className={h2}>Questions</h2>
-          <div className="mt-5 space-y-3">
+          <h2 className={h2}>{page.faqHeadline}</h2>
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
             {page.faqs.map(([q, a]) => (
               <div key={q} className="rounded-2xl border border-[#E6E0F7] bg-white p-4">
-                <div className="font-semibold">{q}</div>
+                <div className="font-bold">{q}</div>
                 <p className="mt-1 text-[#3B3752]">{a}</p>
               </div>
             ))}
@@ -157,6 +183,9 @@ export default function AgentLanding({ page }) {
                 Book a free demo <ArrowRight className="ml-2 h-4 w-4" />
               </StrategyButton>
             </div>
+            <ul className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-white/80">
+              {page.fold.fud.map((f) => <li key={f} className="flex items-center gap-1.5"><Check className="h-4 w-4" />{f}</li>)}
+            </ul>
             <p className="mt-6 text-sm text-white/70">{page.whoWeAre}</p>
           </div>
         </section>
