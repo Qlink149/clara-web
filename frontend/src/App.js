@@ -185,17 +185,6 @@ const caseStudies = [
     result:
       "43,000 calls in one day, 100% navigation support, and 24/7 event analytics — with record turnout and a complete post-event dataset for the next edition.",
   },
-  {
-    title: "Samara Chatbot",
-    subtitle: "WhatsApp Vedic Astrology",
-    tag: "Weekend Project",
-    challenge:
-      "People want a real Vedic astrology reading without waiting on an astrologer — but most chatbots are generic and disconnected from actual chart data.",
-    solution:
-      "We built a WhatsApp chatbot that collects birth details, computes a real kundli, and delivers warm Hindi/English readings grounded in the chart.",
-    result: "Try it live on WhatsApp — say hi to start your reading.",
-    href: "https://wa.me/919549549339?text=hi",
-  },
 ];
 
 const solutions = [
@@ -414,7 +403,7 @@ export default function App() {
                 {[
                   ["60–70%", "reduction in manual workflow time"],
                   ["5–12%", "improvement in sales revenue"],
-                  ["18+", "active enterprise relationships"],
+                  ["19", "active enterprise relationships"],
                 ].map(([value, label]) => (
                   <div
                     key={value}
