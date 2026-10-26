@@ -51,10 +51,14 @@ export const agentPages = [
     outcomes: [
       "Head of Commercial & Contracts, JLL India: booked a Microsoft Teams meeting.",
       "VP Purchase & Contracts, real-estate developer: asked for full details and said \"Absolutely\" to talking online.",
+      "VP Group Procurement, Dubai developer: \"Sure wud love to xplore\".",
       "3 Principal Architects: said yes to a call.",
     ],
     moreImages: [
       ["/proof/li/shubh-02.webp", "VP Purchase & Contracts, real-estate developer: \"Share complete details\", then \"Absolutely\" to talking online"],
+      ["/proof/li/sid-01.webp", "VP Group Procurement, Dubai developer: \"Sure wud love to xplore\""],
+      ["/proof/li/sid-02.webp", "Founder, luxury interiors studio: said sure to a call and shared her email for the brochure"],
+      ["/proof/li/sid-04.webp", "Sr. Project Manager, developer's stone division: asked for the company profile, catalogue and specs"],
       ["/proof/li/shubh-01.webp", "Principal Architect: \"Call me ..we can discuss\""],
       ["/proof/li/shubh-03.webp", "Principal Architect: \"Yes, I'm interested\" in a call"],
       ["/proof/li/shubh-04.webp", "Principal Architect: \"Sure\" to a brief call"],
@@ -63,6 +67,7 @@ export const agentPages = [
       ["/proof/li/sanjeet-05.webp", "Founder, coworking space: \"I'm absolutely open to it\""],
       ["/proof/li/sanjeet-02.webp", "Growth Manager, nonprofit: asks how to work together"],
       ["/proof/li/sanjeet-04.webp", "Founder, business network: \"Okay, sure\" and shares WhatsApp"],
+      ["/proof/li/sid-03.webp", "Procurement Engineer, Dubai developer: pointed us to the right colleague"],
     ],
     imagesNote: "Real LinkedIn replies from outreach run by our agent for our clients Haique Surfaces and Sanjeet Ray (business coach). Names, photos, companies and contact details of the people who replied are blurred.",
     whatYouGet: [
