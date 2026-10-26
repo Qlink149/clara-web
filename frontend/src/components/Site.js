@@ -107,20 +107,12 @@ export function useSiteMotion() {
     }
     if (reduce) return () => cleanups.forEach((c) => c());
 
-    // Travelling star + scroll-scrubbed statement
-    const star = document.querySelector(".travel-star");
+    // Scroll-scrubbed statement
     const scrubs = [...document.querySelectorAll(".scrub")].map((el) => ({ el, words: [...el.querySelectorAll("span")] }));
     let raf = 0;
     const tick = () => {
       raf = 0;
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      const p = h > 0 ? window.scrollY / h : 0;
-      if (star) {
-        const y = 90 + p * (window.innerHeight - 160);
-        star.style.transform = `translateY(${y}px) rotate(${p * 360}deg)`;
-        star.style.opacity = window.scrollY > 200 ? "0.9" : "0";
-      }
-      scrubs.forEach(({ el, words }) => {
+        scrubs.forEach(({ el, words }) => {
         const r = el.getBoundingClientRect();
         const vh = window.innerHeight;
         const q = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
@@ -150,10 +142,6 @@ export function useSiteMotion() {
     }
     return () => { cleanups.forEach((c) => c()); if (raf) cancelAnimationFrame(raf); };
   }, []);
-}
-
-export function TravelStar() {
-  return <Star className="travel-star star-glow" style={{ opacity: 0 }} />;
 }
 
 // Cycling logo grid: shows `cells` logos and swaps one at a time.

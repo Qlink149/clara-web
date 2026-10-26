@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { StrategyButton } from "@/App";
 import "@/App.css";
-import { SiteHeader, SiteFooter, TravelStar, Star, useSiteMotion } from "@/components/Site";
+import { SiteHeader, SiteFooter, Star, useSiteMotion } from "@/components/Site";
 
 const clients = [
   ["hiranandani", "Hiranandani Parks"], ["rustomjee", "Rustomjee"], ["k-raheja-realty", "K Raheja Realty"], ["vijay-sales", "Vijay Sales"],
@@ -49,7 +49,6 @@ export default function AgentLanding({ page }) {
   return (
     <div className="site min-h-screen w-full" data-testid="agent-landing">
       <SiteHeader />
-      <TravelStar />
 
       <main>
         {/* 1. Above the fold: dream-outcome headline, effortless subhead, 2+ proofs, one CTA, FUD reducers, outcome visual */}

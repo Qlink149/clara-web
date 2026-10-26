@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { waLink, useWhatsAppLink } from "@/lib/whatsapp";
 import "@/App.css";
-import { SiteHeader, SiteFooter, TravelStar, WaButton, Star, LogoGrid, Scrub, CLIENTS, useSiteMotion } from "@/components/Site";
+import { SiteHeader, SiteFooter, WaButton, Star, LogoGrid, Scrub, CLIENTS, useSiteMotion } from "@/components/Site";
 
 
 export const whatsappLink = waLink();
@@ -257,7 +257,6 @@ export default function App() {
   return (
     <div className="site min-h-screen w-full" data-testid="home">
       <SiteHeader />
-      <TravelStar />
       <main>
         {/* Hero */}
         <section id="about" className="sec-dark grain relative" style={{ paddingTop: 150, paddingBottom: 96 }}>
@@ -272,7 +271,7 @@ export default function App() {
               <p className="h-md mt-6 font-medium text-white/85" aria-label="We build AI calling agents, WhatsApp chatbots, live dashboards and custom AI agents">
                 We build <Typing />
               </p>
-              <p className="lead mt-5 max-w-2xl">
+              <p className="lead hero-sub mt-5 max-w-2xl">
                 Clara AI studies how your team works today, then builds and runs the AI that takes the manual work off their plate. Built around your workflow. Done for you.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -373,8 +372,7 @@ export default function App() {
               </ol>
             </div>
             <div className="rv">
-              <img src="/brand/team-daylight.webp" srcSet="/brand/team-daylight-sm.webp 640w, /brand/team-daylight.webp 1200w" sizes="(min-width:1024px) 560px, 100vw" alt="Clara AI team working through a client workflow" loading="lazy" decoding="async" width="1200" height="900" className="h-auto w-full rounded-[28px] object-cover" />
-              <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="grid gap-3">
                 {[["Not just tool sellers", "We choose the right product when it exists and build custom systems when it doesn't."], ["One team", "Business understanding and technical implementation stay under one roof."]].map(([t, d]) => (
                   <div key={t} className="card !p-4"><div className="font-semibold">{t}</div><p className="mt-1 text-sm text-[#4A4566]">{d}</p></div>
                 ))}

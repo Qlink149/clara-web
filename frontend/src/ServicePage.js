@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { servicePages } from "@/servicePages";
 import "@/App.css";
 import AgentLanding from "@/AgentLanding";
-import { SiteHeader, SiteFooter, TravelStar, WaButton, Star, useSiteMotion } from "@/components/Site";
+import { SiteHeader, SiteFooter, WaButton, Star, useSiteMotion } from "@/components/Site";
 
 function ServiceBody({ page }) {
   useSiteMotion();
@@ -11,7 +11,6 @@ function ServiceBody({ page }) {
   return (
     <div className="site min-h-screen w-full" data-testid="service-page">
       <SiteHeader />
-      <TravelStar />
       <main>
         <section className="sec-dark grain relative" style={{ paddingTop: 140, paddingBottom: 80 }}>
           <div className="bg" style={{ backgroundImage: "url(/brand/grad-1.webp)" }} />
