@@ -217,6 +217,16 @@ export default function AgentLanding({ page }) {
               </div>
             ))}
           </div>
+          {page.related && (
+            <div className="mt-6" data-testid="related-reading">
+              <div className="text-sm font-bold text-[#3B3752]">Related reading on our blog</div>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {page.related.map(([href, label]) => (
+                  <li key={href}><a href={href} className="inline-block rounded-full border border-[#E2DCF7] bg-white px-3 py-1.5 text-sm font-semibold text-[#5B3FD9] hover:bg-[#F4F0FF]">{label}</a></li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
 
         <section className={`${wrap} py-12`}>

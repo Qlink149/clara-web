@@ -7,7 +7,7 @@ export const agentPages = [
   {
     landing: true,
     fold: {
-      headline: "Start real conversations with your buyers on LinkedIn, live in 2 weeks",
+      headline: "AI LinkedIn outreach agent: real conversations with your buyers, live in 2 weeks",
       subhead: "Our AI agent finds your buyers, connects and messages them for you, and sends every reply to your WhatsApp. No hours on LinkedIn. No new hire.",
       fud: ["Free demo", "Live in 2 weeks", "Done for you: our team checks the agent", "You reply from WhatsApp"],
     },
@@ -34,9 +34,9 @@ export const agentPages = [
       alt: "WhatsApp group screenshot: Sanjeet Ray Coach replies \"Thanks, this was super cool\" and \"I got a WhatsApp from the agent\". Other participants are blurred.",
     },
     name: "AI LinkedIn Outreach Agent",
-    title: "AI LinkedIn Outreach Agent: Replies Sent to WhatsApp | Clara AI",
+    title: "AI LinkedIn Outreach Agent, Done for You | Clara AI",
     description:
-      "Clara AI's LinkedIn agent finds your buyers, connects with them and sends every reply to you on WhatsApp. Haique Surfaces: 345 reached, 107 accepted, 14 replies.",
+      "Done-for-you AI LinkedIn outreach agent. It finds your buyers, connects, messages them and sends every reply to your WhatsApp. Live in 2 weeks. Free demo.",
     waText: "Hi Clara, I'd like a demo of the LinkedIn Outreach Agent [WEB-LI]",
     eyebrow: "AI LinkedIn Outreach Agent",
     headline: "Get replies from buyers on LinkedIn",
@@ -103,18 +103,23 @@ export const agentPages = [
     midCta: "Want replies like these from your buyers?",
     ctaText: "Tell us who you sell to. We'll show you how the agent would reach them.",
     faqs: [
+      ["What is an AI LinkedIn outreach agent?", "It is software that does LinkedIn outreach for you. Clara AI's agent finds people who match your ideal buyer, likes their posts, sends an invite and a personal message, and sends every reply to your WhatsApp. Our team checks its work."],
+      ["How is this different from a LinkedIn automation tool?", "You don't run it yourself. It is done for you: we set it up, run it on your account at a human pace, and meet you every 2 weeks with a report."],
       ["Do I need to open LinkedIn?", "No. You get every reply on WhatsApp and answer from there."],
       ["Will the agent reply on its own?", "Not to warm leads. It asks you first."],
       ["Is my account safe?", "We keep daily limits and a human pace on your account."],
       ["How soon does it start?", "Week 1 is setup. Outreach goes live in week 2."],
-      ["Do I need LinkedIn Premium?", "We set up and run Premium on your account as part of the service."],
+    ],
+    related: [
+      ["/blog/what-is-a-custom-ai-agent/", "What is a custom AI agent?"],
+      ["/blog/ai-agents-vs-hiring-for-office-work/", "AI agents vs hiring for office work"],
     ],
     whoWeAre: "Clara AI is an AI implementation company, part of SNB Future Drive Pvt Ltd. We use this agent ourselves.",
   },
   {
     landing: true,
     fold: {
-      headline: "Get more visitors from Google with a new blog post every day",
+      headline: "AI SEO agent: more visitors from Google, with a new blog post every day",
       subhead: "Our AI agent picks topics your buyers search for, writes the post, makes the images and publishes it on your site. Our team checks the work. No writers to hire, no posts to chase.",
       fud: ["Free demo", "Done for you: research, writing, images, publishing", "Weekly Google Analytics report"],
     },
@@ -138,7 +143,7 @@ export const agentPages = [
     name: "AI SEO Agent",
     title: "AI SEO Agent: a New Blog Post Every Day | Clara AI",
     description:
-      "Clara AI's SEO agent writes and posts a new blog on your site every day, made to rank on Google and show up in ChatGPT. On our own site, visits from Google search rose 28% (10–25 Oct vs the 16 days before).",
+      "AI SEO agent that writes and publishes a new blog post on your site every day, made to rank on Google and ChatGPT. On our own site, Google visits rose 28%.",
     waText: "Hi Clara, I'd like a demo of the SEO Agent [WEB-SEO]",
     eyebrow: "AI SEO Agent",
     headline: "A new blog post daily. More Google traffic.",
@@ -185,11 +190,17 @@ export const agentPages = [
     midCta: "Want this kind of growth on your site?",
     ctaText: "Tell us what you sell and where. We'll show you the topic plan.",
     faqs: [
+      ["What is an AI SEO agent?", "It is software that runs your blog for you. Clara AI's agent picks topics your buyers search for, writes each post, makes the images and publishes it on your site every day. Our team checks the work, and you get a weekly report."],
       ["Who writes the posts?", "The AI agent writes them. Our team sets the plan and checks the work."],
       ["Does it help with AI search too?", "Yes. Posts give clear answers that ChatGPT, Gemini and Perplexity can quote."],
       ["How will I know it works?", "You get a report every week from Google Analytics and Search Console."],
       ["Do I approve what gets posted?", "You approve the topic plan and image style before posts start."],
       ["Will posts sound like AI spam?", "Each post is checked by our team and answers a real question your buyers search for."],
+    ],
+    related: [
+      ["/blog/", "See the posts our agent publishes"],
+      ["/blog/what-is-a-custom-ai-agent/", "What is a custom AI agent?"],
+      ["/blog/ai-agents-vs-hiring-for-office-work/", "AI agents vs hiring for office work"],
     ],
     whoWeAre: "Clara AI is an AI implementation company, part of SNB Future Drive Pvt Ltd. We run this agent on our own site.",
   },
