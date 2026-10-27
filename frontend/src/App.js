@@ -387,6 +387,18 @@ export default function App() {
           </div>
         </section>
 
+        {/* Agent product links */}
+        <section className="sec-light" style={{ paddingBottom: 56 }} data-hide-float data-testid="agent-links">
+          <div className="wrap grid gap-4 sm:grid-cols-2">
+            {[["/ai-linkedin-outreach-agent", "AI LinkedIn Outreach Agent", "Real conversations with your buyers, live in 2 weeks."], ["/ai-seo-agent", "AI SEO Agent", "A new blog post on your site every day."]].map(([href, t, d]) => (
+              <a key={href} href={href} className="card group flex items-center justify-between gap-4 transition hover:-translate-y-1 hover:border-[#8D57DE]" data-cursor="big">
+                <div><h2 className="text-xl font-semibold">{t}</h2><p className="card-muted mt-1">{d}</p></div>
+                <ArrowRight className="h-5 w-5 shrink-0 text-[#5D27CA] transition group-hover:translate-x-1" aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+        </section>
+
         {/* Statement scrub */}
         <section className="sec sec-mist">
           <div className="wrap">
