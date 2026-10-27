@@ -1,7 +1,46 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/blog", "destination": "https://clarablog.vercel.app/blog/" },
-    { "source": "/blog/(.*)", "destination": "https://clarablog.vercel.app/blog/$1" }
+    {
+      "source": "/blog/(.*)",
+      "destination": "https://clarablog.vercel.app/blog/$1"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/blog",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/ai-chatbots/",
+      "destination": "/ai-chatbots",
+      "permanent": true
+    },
+    {
+      "source": "/ai-calling-agents/",
+      "destination": "/ai-calling-agents",
+      "permanent": true
+    },
+    {
+      "source": "/ai-dashboards/",
+      "destination": "/ai-dashboards",
+      "permanent": true
+    },
+    {
+      "source": "/custom-ai-agents/",
+      "destination": "/custom-ai-agents",
+      "permanent": true
+    },
+    {
+      "source": "/ai-linkedin-outreach-agent/",
+      "destination": "/ai-linkedin-outreach-agent",
+      "permanent": true
+    },
+    {
+      "source": "/ai-seo-agent/",
+      "destination": "/ai-seo-agent",
+      "permanent": true
+    }
   ]
 }
