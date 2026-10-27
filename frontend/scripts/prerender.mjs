@@ -34,8 +34,8 @@ const org = {
 
 const routes = [{
   path: "/", file: "index.html",
-  title: "Clara AI | AI Chatbots, Calling Agents and Automation for Businesses",
-  description: "Clara AI is an AI implementation partner that builds AI chatbots for websites and WhatsApp, AI calling agents, operations dashboards and custom AI agents. English, Hindi and Arabic. First demo within 7 days.",
+  title: "Clara AI: AI LinkedIn Outreach and SEO Agents for B2B",
+  description: "Clara AI runs AI agents for you: LinkedIn outreach with replies on WhatsApp, a new SEO blog post every day, plus AI chatbots and calling agents. Free demo.",
   ld: [org, { "@type": "WebSite", "@id": `${SITE}/#website`, name: "Clara AI", url: `${SITE}/`, publisher: { "@id": `${SITE}/#organization` } }],
 }];
 for (const p of servicePages) {

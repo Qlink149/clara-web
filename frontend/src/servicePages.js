@@ -11,7 +11,7 @@ export const servicePages = [
     name: "AI Chatbots",
     title: "AI Chatbots for Websites and WhatsApp | Clara AI",
     description:
-      "Clara AI builds AI chatbots for your website and WhatsApp that answer from your own documents, qualify leads, book appointments and hand over to your team. English, Hindi and Arabic. First demo within 7 days.",
+      "AI chatbots for your website and WhatsApp that answer from your documents, qualify leads and book appointments. English, Hindi, Arabic. Demo in 7 days.",
     eyebrow: "AI Chatbots",
     headline: "AI chatbots for your website and WhatsApp that answer from your own knowledge.",
     intro:
@@ -48,7 +48,7 @@ export const servicePages = [
     name: "AI Calling Agents",
     title: "AI Calling Agents for Lead Follow-Up and Support | Clara AI",
     description:
-      "Clara AI builds AI calling agents for outbound and inbound calls: lead follow-up, qualification, reminders, feedback and support. English, Hindi and Arabic. First demo within 7 days.",
+      "AI calling agents for inbound and outbound calls: lead follow-up, qualification, reminders and support. English, Hindi and Arabic. First demo in 7 days.",
     eyebrow: "AI Calling Agents",
     headline: "AI calling agents that follow up with every lead and customer by phone.",
     intro:
@@ -83,7 +83,7 @@ export const servicePages = [
     name: "AI Dashboards",
     title: "AI Operations and BI Dashboards | Clara AI",
     description:
-      "Clara AI builds operations intelligence and BI dashboards that bring data from many systems into one live view, with AI summaries and recommendations. First demo within 7 days.",
+      "AI operations and BI dashboards that bring data from many systems into one live view, with AI summaries and recommendations. First demo in 7 days.",
     eyebrow: "AI Dashboards",
     headline: "Operations dashboards that turn scattered data into one live view.",
     intro:
@@ -117,7 +117,7 @@ export const servicePages = [
     name: "Custom AI Agents",
     title: "Custom AI Agents for Business Workflows | Clara AI",
     description:
-      "Clara AI builds custom AI agents and workflow automation for specific business processes, from lead journeys to internal approvals. English, Hindi and Arabic. First demo within 7 days.",
+      "Custom AI agents and workflow automation for your business processes, from lead journeys to internal approvals. English, Hindi, Arabic. Demo in 7 days.",
     eyebrow: "Custom AI Agents",
     headline: "Custom AI agents built around the workflow you actually run.",
     intro:
